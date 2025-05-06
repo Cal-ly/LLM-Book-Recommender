@@ -4,6 +4,8 @@ import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
 import os
+import datetime
+import logging
 
 # NOTE: PyTorch may trigger harmless RuntimeErrors with Streamlit's file watcher.
 # Safe to ignore unless app functionality breaks.
@@ -13,7 +15,14 @@ BASE_DIR = os.path.dirname(__file__)
 EMBEDDING_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "embeddings"))
 MODEL_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "models"))
 AUX_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "auxiliary"))
+LOGS_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "logs"))
+os.makedirs(LOGS_DIR, exist_ok=True)
+LOG_FILE = os.path.join(LOGS_DIR, f"main-{datetime.date.today()}.txt")
 MODEL_NAME = "all-MiniLM-L6-v2"
+
+# Setup logging
+logging.basicConfig(filename=LOG_FILE, level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logger = logging.getLogger(__name__)
 
 # Load model
 @st.cache_resource

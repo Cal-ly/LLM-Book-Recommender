@@ -4,12 +4,15 @@ import logging
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
+import datetime
 
 # Setup paths
 BASE_DIR = os.path.dirname(__file__)
-DATA_PATH = os.path.abspath(os.path.join(BASE_DIR, "..", "data-exploration", "output", "books_cleaned.csv"))
 MODEL_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "models"))
 EMBEDDING_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "embeddings"))
+LOGS_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "logs"))
+os.makedirs(LOGS_DIR, exist_ok=True)
+LOG_FILE = os.path.join(LOGS_DIR, f"embed_books-{datetime.date.today()}.txt")
 MODEL_NAME = "all-MiniLM-L6-v2"
 
 # Ensure output dirs exist
@@ -17,7 +20,7 @@ os.makedirs(MODEL_DIR, exist_ok=True)
 os.makedirs(EMBEDDING_DIR, exist_ok=True)
 
 # Logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(filename=LOG_FILE, level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
 # Load cleaned dataset
