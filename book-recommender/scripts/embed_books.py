@@ -8,6 +8,7 @@ import datetime
 
 # Setup paths
 BASE_DIR = os.path.dirname(__file__)
+DATA_PATH = os.path.abspath(os.path.join(BASE_DIR, "..", "data", "books_cleaned.csv"))
 MODEL_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "models"))
 EMBEDDING_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "embeddings"))
 LOGS_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "logs"))
