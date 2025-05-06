@@ -85,7 +85,15 @@ Book metadata: embeddings/books_indexed.csv
 
 ### 🌐 3. Run the App
 ```bash
-streamlit run app/main.py
+SET STREAMLIT_WATCHER_TYPE=none
+streamlit run book-recommender/app/main.py
+```
+
+or
+
+```powershell
+$env:STREAMLIT_WATCHER_TYPE="none"
+streamlit run book-recommender/app/main.py
 ```
 
 Then open your browser at http://localhost:8501.

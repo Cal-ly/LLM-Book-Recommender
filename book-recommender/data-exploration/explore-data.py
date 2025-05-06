@@ -5,12 +5,15 @@ import os
 import logging
 import sys
 import numpy as np
+import datetime
 
 # Paths
 BASE_DIR = os.path.dirname(__file__)
 DATA_PATH = os.path.abspath(os.path.join(BASE_DIR, "..", "data", "books.csv"))
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
-LOG_FILE = os.path.join(OUTPUT_DIR, "exploration.log")
+LOGS_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "logs"))
+os.makedirs(LOGS_DIR, exist_ok=True)
+LOG_FILE = os.path.join(LOGS_DIR, f"explore-data-{datetime.date.today()}.txt")
 
 # Ensure output directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -29,7 +32,7 @@ if not os.path.exists(DATA_PATH):
 df = pd.read_csv(DATA_PATH)
 logger.info("Dataset loaded with %d rows and %d columns", df.shape[0], df.shape[1])
 logger.info("Columns: %s", df.columns.tolist())
-logger.info("Missing values per column:\\n%s", df.isnull().sum())
+logger.info("Missing values per column:\n%s", df.isnull().sum())
 
 # Add new columns for analysis
 df["missing_description"] = np.where(df["description"].isna(), 1, 0)
