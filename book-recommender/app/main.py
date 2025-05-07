@@ -42,8 +42,8 @@ def load_books():
     return pd.read_csv(metadata_path)
 
 # App layout
-st.set_page_config(page_title="Local Book Recommender", layout="wide")
-st.title("📚 Local Book Recommender")
+st.set_page_config(page_title="Local Book Recommender", page_icon="📚", layout="wide")
+st.title("Local Book Recommender")
 st.markdown("Search for books using a short description, idea, or theme. All processing is local.")
 
 # User inputs
@@ -67,7 +67,7 @@ if query:
         def get_cover_url(isbn):
             if pd.isna(isbn) or str(isbn).lower() == "nan":
                 return None
-            return f"https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg"
+            return f"https://covers.openlibrary.org/b/isbn/{isbn}-M.jpg"
 
         shown = 0
         cols = st.columns(2)

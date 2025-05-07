@@ -13,7 +13,7 @@ MODEL_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "models"))
 EMBEDDING_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "embeddings"))
 LOGS_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "logs"))
 os.makedirs(LOGS_DIR, exist_ok=True)
-LOG_FILE = os.path.join(LOGS_DIR, f"embed_books-{datetime.date.today()}.txt")
+LOG_FILE = os.path.join(LOGS_DIR, f"embed_books-{datetime.date.today()}.log")
 MODEL_NAME = "all-MiniLM-L6-v2"
 
 # Ensure output dirs exist
@@ -54,7 +54,7 @@ index = faiss.IndexFlatL2(dimension)
 index.add(embeddings)
 
 faiss.write_index(index, os.path.join(EMBEDDING_DIR, "index.faiss"))
-df[["title", "authors", "average_rating", "description"]].to_csv(os.path.join(EMBEDDING_DIR, "books_indexed.csv"), index=False)
+df[["isbn10", "isbn13", "title", "authors", "average_rating", "description"]].to_csv(os.path.join(EMBEDDING_DIR, "books_indexed.csv"), index=False)
 
 logger.info("Embeddings and FAISS index saved successfully.")
 print("Embedding complete. Index saved to embeddings/.")

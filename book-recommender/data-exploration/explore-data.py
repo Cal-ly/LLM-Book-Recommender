@@ -1,3 +1,4 @@
+# NOTE The script performs data exploration on a book dataset, including loading the dataset, checking for missing values, and generating visualizations.
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -10,10 +11,11 @@ import datetime
 # Paths
 BASE_DIR = os.path.dirname(__file__)
 DATA_PATH = os.path.abspath(os.path.join(BASE_DIR, "..", "data", "books.csv"))
+DATA_OUTPUT_PATH = os.path.abspath(os.path.join(BASE_DIR, "..", "data", "books_cleaned.csv"))
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
 LOGS_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "logs"))
 os.makedirs(LOGS_DIR, exist_ok=True)
-LOG_FILE = os.path.join(LOGS_DIR, f"explore-data-{datetime.date.today()}.txt")
+LOG_FILE = os.path.join(LOGS_DIR, f"explore-data-{datetime.date.today()}.log")
 
 # Ensure output directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -50,12 +52,16 @@ plt.close()
 logger.info("Correlation heatmap saved.")
 
 # Filter clean subset
-clean_df = df.dropna(subset=["description", "num_pages", "average_rating", "published_year"])
+clean_df = df.dropna(subset=["description", "num_pages", "average_rating", "published_year"]).copy()
 clean_df["words_in_description"] = clean_df["description"].str.split().str.len()
 logger.info("Filtered dataset to %d entries with complete and usable descriptions.", clean_df.shape[0])
 
 # Export cleaned dataset
-cleaned_csv_path = os.path.join(OUTPUT_DIR, "books_cleaned.csv")
+cleaned_csv_path = DATA_OUTPUT_PATH
+if os.path.exists(cleaned_csv_path):
+    logger.warning("Cleaned dataset already exists. Overwriting: %s", cleaned_csv_path)
+else: 
+    logger.info("Exporting cleaned dataset to: %s", cleaned_csv_path)
 clean_df.to_csv(cleaned_csv_path, index=False)
 logger.info("Cleaned dataset exported to: %s", cleaned_csv_path)
 
@@ -91,4 +97,5 @@ plt.savefig(os.path.join(OUTPUT_DIR, "top_authors.png"))
 plt.close()
 logger.info("Top authors plot saved.")
 
+logger.info("Data exploration complete.")
 print("Data exploration complete. Check the output/ folder for results.")
