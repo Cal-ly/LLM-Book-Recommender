@@ -38,7 +38,7 @@ logger.info("Missing values per column:\n%s", df.isnull().sum())
 
 # Add new columns for analysis
 df["missing_description"] = np.where(df["description"].isna(), 1, 0)
-df["age_of_book"] = 2024 - df["published_year"]
+df["age_of_book"] = 2025 - df["published_year"]
 
 # Save correlation heatmap
 columns_of_interest = ["num_pages", "age_of_book", "missing_description", "average_rating"]

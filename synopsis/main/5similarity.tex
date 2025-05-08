@@ -1,0 +1,66 @@
+\chapter{Vector Similarity Search with FAISS}
+\label{chapter:similarity}
+
+The system uses vector similarity search to identify semantically related books. 
+Once the text embeddings are generated, the task becomes finding the most similar vectors to a given query vector. 
+This is accomplished using FAISS — Facebook AI Similarity Search\cite{faiss}.
+
+\section{Similarity Search Theory}
+\label{sec:similarity-theory}
+
+Given a user query $q$ and a set of embedded book descriptions $\{\vec{b}_1, \vec{b}_2, \dots, \vec{b}_n\}$, the system computes similarity using the L2 distance:
+
+\[
+\text{dist}(\vec{q}, \vec{b}_i) = \|\vec{q} - \vec{b}_i\|_2^2
+\]
+
+Where:
+\begin{itemize}
+    \item $\vec{q}$ is the embedding of the user query.
+    \item $\vec{b}_i$ is the embedding of the $i$th book description.
+    \item The top $k$ results with the smallest distance values are returned as recommendations.
+\end{itemize}
+
+This approach relies on the assumption that semantically similar texts lie close together in the embedding space.
+
+---
+
+\section{Why FAISS?}
+\label{sec:faiss-choice}
+
+FAISS is a library optimized for fast similarity search of dense vectors. It is designed for high-dimensional, large-scale applications and supports both exact and approximate nearest neighbor search.
+
+\begin{itemize}
+    \item \textbf{Speed:} Fast search even for large datasets.
+    \item \textbf{Flexibility:} Multiple indexing structures and distance metrics.
+    \item \textbf{Local Execution:} FAISS supports CPU-only environments and offline usage.
+\end{itemize}
+
+In this project, FAISS was used in its simplest form: \texttt{IndexFlatL2}, which performs exact nearest-neighbor search using Euclidean distance.
+
+---
+
+\section{Implementation}
+\label{sec:similarity-implementation}
+
+After generating the embeddings, the FAISS pipeline performs the following steps:
+
+\begin{enumerate}
+    \item Create an index using \texttt{faiss.IndexFlatL2(dimension)}.
+    \item Add the matrix of 6,507 book vectors to the index.
+    \item Save the index to disk as \texttt{index.faiss} in the \texttt{embeddings/} folder.
+    \item At query time:
+    \begin{itemize}
+        \item The user query is embedded using the same MiniLM model.
+        \item The query vector is compared against the index to find the top-$k$ nearest neighbors.
+        \item Metadata for matching books is retrieved from \texttt{books\_indexed.csv}.
+    \end{itemize}
+\end{enumerate}
+
+---
+
+\section{Summary}
+\label{sec:similarity-summary}
+
+FAISS allows the system to perform efficient and scalable semantic similarity search over thousands of books. 
+By combining powerful sentence embeddings with fast vector indexing, the recommender system delivers meaningful results in real time—entirely offline.

@@ -1,0 +1,90 @@
+\chapter{User Interface}
+\label{chapter:interface}
+
+While not explicitly part of ML, the design and logic of the user interface (UI) enables interactive querying and filtering of book recommendations.
+The frontend was built using \texttt{Streamlit}, a lightweight Python-based web framework suitable for rapid prototyping and local execution.
+
+\section{Design Principles}
+\label{sec:ui-design}
+
+The UI was designed with simplicity, usability, and privacy in mind. All processing, including embedding, similarity search, and filtering, takes place locally. No user data is sent over the internet.
+
+Key goals included:
+
+\begin{itemize}
+    \item Provide an intuitive way for users to search by concept or theme, not keywords.
+    \item Allow flexible filtering based on metadata such as rating or genre.
+    \item Ensure responsiveness without requiring server-side infrastructure.
+\end{itemize}
+
+---
+
+\section{Query Workflow}
+\label{sec:ui-query-workflow}
+
+The interface presents a single input box where the user can enter a free-form natural language description, such as:
+
+\begin{quote}
+    \texttt{“A dystopian society controlled by AI”}
+\end{quote}
+
+Once submitted:
+
+\begin{enumerate}
+    \item The query is embedded using the same MiniLM model used for the book descriptions.
+    \item The query vector is searched against the FAISS index to return the top 50 results.
+    \item Results are filtered and sorted based on user preferences.
+\end{enumerate}
+
+---
+
+\section{Filtering and Sorting Logic}
+\label{sec:ui-filtering}
+
+The UI provides several mechanisms for controlling output:
+
+\begin{itemize}
+    \item \textbf{Minimum rating filter:} A slider allows users to set a threshold (e.g., $\geq 4.0$).
+    \item \textbf{Genre/category filter:} A case-insensitive text match on the \texttt{categories} field.
+    \item \textbf{Sorting:} Results can be sorted by average rating in descending or ascending order.
+\end{itemize}
+
+These filters are applied after similarity search, allowing semantic results to be further refined by user criteria.
+
+---
+
+\section{Result Display}
+\label{sec:ui-display}
+
+Each result includes:
+
+\begin{itemize}
+    \item \textbf{Book cover image} (fetched from OpenLibrary using ISBN, with fallback).
+    \item \textbf{Title and author(s)} in formatted text.
+    \item \textbf{Average rating} using a star display.
+    \item \textbf{Excerpt of the book description} (up to 500 characters).
+\end{itemize}
+
+Results are displayed in a paginated layout (6 books per page), with navigation controls provided via a page selector widget.
+
+---
+
+\section{Privacy and Offline Execution}
+\label{sec:ui-privacy}
+
+All user inputs and results are processed locally. The system:
+
+\begin{itemize}
+    \item Does not collect or transmit any user data.
+    \item Does not require login, cookies, or tracking.
+    \item Functions without an internet connection (except for optional book cover lookups).
+\end{itemize}
+
+This design supports the overarching motivation for the project: to demonstrate the viability of running compact, privacy-respecting ML models on local hardware.
+
+---
+
+\section{Summary}
+\label{sec:ui-summary}
+
+The user interface enables real-time, offline interaction with the recommender system. Streamlit provides a simple and effective platform for building and deploying such applications, and the combination of semantic search with filtering yields a user experience that is both flexible and secure.

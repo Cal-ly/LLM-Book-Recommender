@@ -1,0 +1,172 @@
+\chapter{Mathematical Foundations}
+\label{appendix:math}
+
+\section{Vectors and Vector Spaces}
+\label{sec:math-vectors}
+
+\subsection*{Intuition}
+
+A vector is an ordered list of numbers, often used to represent position, direction, or attributes in space. In machine learning, vectors are used to encode things like books, queries, and words.
+
+\textbf{Example:} A 3D vector: $\vec{v} = [2, 1, -3]$  
+A 384D vector (used in MiniLM): $\vec{v} \in \mathbb{R}^{384}$
+
+\subsection*{Visualization}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.4]
+\draw[->] (-0.5, 0) -- (3.5, 0) node[right] {$x$};
+\draw[->] (0, -0.5) -- (3, 3) node[above] {$y$};
+
+\draw[->, thick, blue] (0, 0) -- (2.5, 2) node[midway, above] {$\vec{v}$};
+
+\node[below left] at (0,0) {0};
+\end{tikzpicture}
+\caption{2D vector shown as a point in space}
+\label{fig:vector-visual}
+\end{figure}
+
+\subsection*{Norm and Length}
+
+The length of a vector (its L2 norm) is calculated as:
+
+\[
+\|\vec{v}\|_2 = \sqrt{\sum_{i=1}^n v_i^2}
+\]
+
+This is used in both normalization and distance computations.
+
+---
+
+\section{Distance and Similarity Measures}
+\label{sec:math-distance}
+
+\subsection*{L2 (Euclidean) Distance}
+
+The L2 distance between two vectors $\vec{a}$ and $\vec{b}$:
+
+\[
+\|\vec{a} - \vec{b}\|_2^2 = \sum_{i=1}^{n} (a_i - b_i)^2
+\]
+
+This is used to compare how similar a user query is to each book.
+
+\subsection*{Cosine Similarity (Alternative)}
+
+Cosine similarity measures angle instead of length:
+
+\[
+\cos(\theta) = \frac{\vec{a} \cdot \vec{b}}{\|\vec{a}\| \|\vec{b}\|}
+\]
+
+Where $\vec{a} \cdot \vec{b} = \sum a_i b_i$ is the dot product.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.3]
+    % Define named points
+    \coordinate (O) at (0,0);
+    \coordinate (A) at (3,1);
+    \coordinate (B) at (1.5,2.5);
+    
+    % Draw vectors
+    \draw[->] (O) -- (A) node[below right] {$\vec{a}$};
+    \draw[->] (O) -- (B) node[above right] {$\vec{b}$};
+    
+    % Angle annotation
+    \draw pic["$\theta$", draw=red, text=red, angle radius=20, angle eccentricity=1.2]
+      {angle=A--O--B};
+    
+    \end{tikzpicture}
+    \caption{Angle $\theta$ between two vectors (used in cosine similarity)}
+    \label{fig:cosine-angle}
+\end{figure}
+
+---
+
+\section{Matrix Representations and Dot Products}
+\label{sec:math-dotproduct}
+
+\subsection*{Matrix of Embeddings}
+
+When embedding multiple books, we stack vectors into a matrix $B$:
+
+\[
+B =
+\begin{bmatrix}
+\vec{b}_1 \\
+\vec{b}_2 \\
+\vdots \\
+\vec{b}_n
+\end{bmatrix}
+\in \mathbb{R}^{n \times d}
+\]
+
+Where:
+- $n$ = number of books (e.g. 6,507)
+- $d$ = dimensions of each embedding (e.g. 384)
+
+A user query vector $\vec{q} \in \mathbb{R}^d$ can be compared to all rows of $B$ via matrix-vector multiplication.
+
+\[
+s = B \vec{q}^T
+\]
+
+This returns a vector of similarity scores $s \in \mathbb{R}^n$.
+
+---
+
+\section{Self-Attention Scores (MiniLM Core Idea)}
+\label{sec:math-selfattention}
+
+Each word in a sentence generates 3 vectors: Query ($Q$), Key ($K$), and Value ($V$). These are used to compute attention weights.
+
+\subsection*{Attention Score Formula}
+
+\[
+\text{Attention}(Q, K, V) = \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right)V
+\]
+
+Where:
+- $QK^T$ computes raw alignment scores between words
+- $\sqrt{d_k}$ is a scaling factor
+- Softmax turns scores into probabilities
+- $V$ is the weighted sum of context information
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=1.2cm and 1.5cm,
+  word/.style={draw, rectangle, rounded corners, fill=blue!10, minimum width=1.5cm, minimum height=0.9cm},
+  attn/.style={->, thick, red!70}
+]
+
+\node[word] (w1) {I};
+\node[word, right=of w1] (w2) {read};
+\node[word, right=of w2] (w3) {a};
+\node[word, right=of w3] (w4) {book};
+
+\draw[attn] (w2) to[bend left=25] (w1);
+\draw[attn] (w2) to[bend left=10] (w3);
+\draw[attn] (w2) to[bend left=5] (w4);
+
+\end{tikzpicture}
+\caption{Self-attention: word \texttt{"read"} attends to \texttt{"I"}, \texttt{"a"}, and \texttt{"book"}}
+\label{fig:selfattention-math}
+\end{figure}
+
+---
+
+\section{Summary of Mathematical Concepts}
+\label{sec:math-summary}
+
+The math behind this system combines linear algebra, geometry, and probability. The core building blocks are:
+
+\begin{itemize}
+    \item Vectors to represent meaning.
+    \item Distance metrics (L2) for similarity.
+    \item Matrix operations to scale comparisons.
+    \item Self-attention to derive context-aware embeddings.
+\end{itemize}
+
+Together, these allow raw text to be converted into structured representations that machines can reason about efficiently, even in a relatively small local environment.

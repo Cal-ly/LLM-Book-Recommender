@@ -1,0 +1,60 @@
+\chapter{Text Embedding}
+\label{chapter:embedding}
+
+The embedding took each book description and converted it into a dense vector using a pretrained transformer model, enabling semantic comparison through vector space similarity.
+
+\section{Sentence Embedding Theory}
+\label{sec:embedding-theory}    2
+
+Sentence embeddings are fixed-size numerical vector representations of variable-length text. 
+They preserve semantic meaning and enable similarity search using mathematical distance metrics. 
+The core idea is that similar texts will be embedded close together in high-dimensional space.
+Formally, for a given input text $t$, the embedding function $f$ maps it to a vector in $\mathbb{R}^d$:
+
+\[
+\vec{v} = f(t), \quad \vec{v} \in \mathbb{R}^{384}
+\]
+
+The model used in this project is the pretrained transformer \texttt{all-MiniLM-L6-v2}\cite{sentence-transformers}.
+It outputs 384-dimensional embeddings, which is acceptable for our purpose. 
+This model balances performance with computational efficiency, making it suitable for local execution on consumer hardware.
+
+---
+
+\section{Embedding Implementation}
+\label{sec:embedding-implementation}
+
+The cleaned dataset (\texttt{books\_cleaned.csv}) was used as input. The embedding process involved the following steps:
+
+\begin{enumerate}
+    \item Loading the cleaned book descriptions from the dataset.
+    \item Converting all descriptions to string type, passing them to the \texttt{SentenceTransformer} interface.
+    \item Encoding the descriptions to obtain a NumPy matrix of embeddings.
+    \item Storing the resulting matrix in a \texttt{FAISS} index for later use in vector similarity search.
+    \item Saving book metadata in a separate file to allow filtered access to indexed results.
+\end{enumerate}
+
+---
+
+\section{Embedding Configuration}
+\label{sec:embedding-config}
+
+The embedding script uses the following configuration:
+
+\begin{itemize}
+    \item \textbf{Model:} \texttt{all-MiniLM-L6-v2} from the \texttt{sentence-transformers} library.
+    \item \textbf{Embedding dimension:} 384
+    \item \textbf{Library:} \texttt{sentence-transformers} (built on Hugging Face Transformers)
+    \item \textbf{Storage:} \texttt{FAISS} index with L2 distance
+    \item \textbf{Number of embedded books:} 6,507
+\end{itemize}
+
+All embeddings were generated on CPU and saved to the \texttt{embeddings/} folder alongside a CSV file (\texttt{books\_indexed.csv}) containing metadata such as title, author, rating, and description.
+
+---
+
+\section{Summary}
+\label{sec:embedding-summary}
+
+Sentence embeddings serve as the foundation for all downstream recommendation functionality. Using a small yet powerful model such as MiniLM ensures that the system remains performant, even in offline settings.
+The quality of the embeddings—along with the cleaned, semantically rich descriptions—plays a crucial role in the system's ability to return relevant book suggestions.

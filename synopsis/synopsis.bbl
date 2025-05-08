@@ -16,5 +16,228 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{apa/apasortcite//global/global}
+    \entry{7k-books}{dataset}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=aa72f98d31bf8f1ee763f0bf63cd29e8}{%
+           family={Castillo},
+           familyi={C\bibinitperiod},
+           given={Dylan},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Kaggle}%
+      }
+      \strng{namehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{fullhash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{bibnamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{authorbibnamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{authornamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{authorfullhash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{8}
+      \field{month}{5}
+      \field{title}{7k Books}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
+      \endverb
+      \verb{url}
+      \verb https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
+      \endverb
+    \endentry
+    \entry{faiss}{online}{}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labeldatesource}{nodate}
+      \field{labeltitlesource}{title}
+      \field{title}{FAISS}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://faiss.ai/
+      \endverb
+      \verb{url}
+      \verb https://faiss.ai/
+      \endverb
+    \endentry
+    \entry{handson-ml}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=fb48b65407d03cee0c164d17c1ea7eac}{%
+           family={Geron},
+           familyi={G\bibinitperiod},
+           given={Aurelien},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media, Inc.}%
+      }
+      \strng{namehash}{fb48b65407d03cee0c164d17c1ea7eac}
+      \strng{fullhash}{fb48b65407d03cee0c164d17c1ea7eac}
+      \strng{bibnamehash}{fb48b65407d03cee0c164d17c1ea7eac}
+      \strng{authorbibnamehash}{fb48b65407d03cee0c164d17c1ea7eac}
+      \strng{authornamehash}{fb48b65407d03cee0c164d17c1ea7eac}
+      \strng{authorfullhash}{fb48b65407d03cee0c164d17c1ea7eac}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3nd ed.}
+      \field{isbn}{978-1-491-96465-8}
+      \field{subtitle}{Concepts, Tools, and Techniques to Build Intelligent Systems}
+      \field{title}{Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/
+      \endverb
+      \verb{url}
+      \verb https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/
+      \endverb
+    \endentry
+    \entry{sentence-transformers}{online}{}
+      \field{sortinit}{s}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labeldatesource}{nodate}
+      \field{labeltitlesource}{title}
+      \field{title}{sentence-transformers/all-MiniLM-L6-v2}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+      \endverb
+      \verb{url}
+      \verb https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+      \endverb
+    \endentry
+  \enddatalist
+  \datalist[entry]{apa/global//global/global}
+    \entry{7k-books}{dataset}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=aa72f98d31bf8f1ee763f0bf63cd29e8}{%
+           family={Castillo},
+           familyi={C\bibinitperiod},
+           given={Dylan},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Kaggle}%
+      }
+      \strng{namehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{fullhash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{bibnamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{authorbibnamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{authornamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{authorfullhash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{8}
+      \field{month}{5}
+      \field{title}{7k Books}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
+      \endverb
+      \verb{url}
+      \verb https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
+      \endverb
+    \endentry
+    \entry{faiss}{online}{}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labeldatesource}{nodate}
+      \field{labeltitlesource}{title}
+      \field{title}{FAISS}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://faiss.ai/
+      \endverb
+      \verb{url}
+      \verb https://faiss.ai/
+      \endverb
+    \endentry
+    \entry{handson-ml}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=fb48b65407d03cee0c164d17c1ea7eac}{%
+           family={Geron},
+           familyi={G\bibinitperiod},
+           given={Aurelien},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media, Inc.}%
+      }
+      \strng{namehash}{fb48b65407d03cee0c164d17c1ea7eac}
+      \strng{fullhash}{fb48b65407d03cee0c164d17c1ea7eac}
+      \strng{bibnamehash}{fb48b65407d03cee0c164d17c1ea7eac}
+      \strng{authorbibnamehash}{fb48b65407d03cee0c164d17c1ea7eac}
+      \strng{authornamehash}{fb48b65407d03cee0c164d17c1ea7eac}
+      \strng{authorfullhash}{fb48b65407d03cee0c164d17c1ea7eac}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3nd ed.}
+      \field{isbn}{978-1-491-96465-8}
+      \field{subtitle}{Concepts, Tools, and Techniques to Build Intelligent Systems}
+      \field{title}{Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/
+      \endverb
+      \verb{url}
+      \verb https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/
+      \endverb
+    \endentry
+    \entry{sentence-transformers}{online}{}
+      \field{sortinit}{s}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labeldatesource}{nodate}
+      \field{labeltitlesource}{title}
+      \field{title}{sentence-transformers/all-MiniLM-L6-v2}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+      \endverb
+      \verb{url}
+      \verb https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 
