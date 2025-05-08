@@ -1,0 +1,89 @@
+\documentclass{zbc-report}
+
+\usetikzlibrary{shapes.geometric}  % Including shapes.geometric for TikZ
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+
+%% Set up the bibliography
+\usepackage[backend=biber, style=apa]{biblatex}
+\addbibresource{synopsis.bib}
+
+%% Additional packages and commands
+\usepackage{parskip}
+\setlist{itemsep=-2pt} % Reducing white space in lists slightly
+\renewcommand{\deg}{\si{\degree}\xspace} % Use \deg easily, everywhere
+
+%% Set up the graphics path
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+\tikzstyle{block} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=blue!10]
+\tikzstyle{arrow} = [thick, ->, >=Stealth]
+
+%% Set up the minted package
+\usepackage[cachedir=_minted-report]{minted}
+\setminted{
+    linenos=true,
+    breaklines=true,
+    fontsize=\footnotesize,
+    frame=lines,
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=gray!10,
+    style=vs,
+    mathescape=true,
+}
+
+%% ----------------------------------------------------------------------
+%%    Begin of document + Frontmatter (Roman page numbering)
+%% ----------------------------------------------------------------------
+
+\begin{document}
+
+\frontmatter
+
+%% Define the main parameters
+\title{Synopsis}
+\subtitle{AI and Machine Learning \\ 4. Semester}
+\author{Carsten Lydeking}
+
+\subject{Book recommender using NLP} % Cover only
+\large\affiliation{Zealand Business College} % Cover only
+\coverimage{figures/template-figures/binary.jpg} % Aspect ratio of 2:3 (portrait) recommended
+\definecolor{title}{HTML}{4884d6} % Color for cover title
+
+\makecover
+
+\input{front/title-report}
+
+\tableofcontents
+%\listoffigures
+%\listoftables
+
+%\input{front/nomenclature}
+
+%% ----------------------------------------------------------------------
+%%    Mainmatter (Arabic page numbering)
+%% ----------------------------------------------------------------------
+
+\mainmatter
+
+\input{main/introduction}
+\input{main/methodology}
+\input{main/conclusion}
+
+%% Prevent urls running into margins in bibliography
+\setcounter{biburlnumpenalty}{7000}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{7000}
+
+%% Add bibliography
+%\printbibliography[heading=bibintoc,title={References}]
+
+%% ----------------------------------------------------------------------
+%%    Appendix (Letters for chapters)
+%% ----------------------------------------------------------------------
+
+%\appendix
+%\input{appendix/appendix-a}
+
+\end{document}

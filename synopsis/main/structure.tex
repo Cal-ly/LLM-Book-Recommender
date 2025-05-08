@@ -1,0 +1,102 @@
+\chapter{Structure}
+\label{chapter:structure}
+Brief introduction to the idea of local book recommendations using semantic similarity.
+Explain your motivation:
+\begin{itemize}
+  \item Why book recommendations?
+  \item Why local-only and offline?
+  \item Why semantic search using embeddings?
+\end{itemize}
+State the relevance to the AI & ML course and broader IT field.
+
+\section{Purpose}
+\label{sec:purpose}
+The purpose of this project is to create a local book recommendation system that utilizes natural language processing (NLP) techniques to analyze book descriptions and user queries. The system will leverage semantic similarity to recommend books based on their content, without relying on user data or internet access. This approach aims to provide personalized recommendations while ensuring user privacy and data security.
+The project will explore various aspects of NLP, including text embedding, vector similarity search, and filtering techniques, to enhance the quality of recommendations. By focusing on a local solution, the project aims to demonstrate the feasibility and effectiveness of using machine learning models in a standalone environment.
+
+\section{Problem Definition}
+\textbf{Main Question:}\\
+How can a local ML model be used to recommend books based on natural language descriptions, without requiring user data or internet access?
+
+\textbf{Sub-questions:}
+\begin{enumerate}
+  \item What techniques exist for embedding text into meaningful vectors?
+  \item How can vector similarity be used for finding similar books?
+  \item How can filtering improve recommendation quality?
+  \item What are the limitations of a local, content-only recommender?
+\end{enumerate}
+
+\section{Research Methodology}
+Describe your approach:
+\begin{itemize}
+  \item Literature review (NLP, embeddings, recommendation systems)
+  \item Implementation using Python, FAISS, Streamlit, SentenceTransformers
+  \item Practical testing with a cleaned dataset and user queries
+\end{itemize}
+Clarify that this is not a software development methodology (e.g. Agile), but a research and prototype project.
+
+\section{Planning}
+Describe your 5-week timeline.
+\begin{itemize}
+  \item Week 1 – Research and theory
+  \item Week 2 – Data cleaning and exploration
+  \item Week 3 – Embedding and similarity search
+  \item Week 4 – Building UI
+  \item Week 5 – Evaluation and writing
+\end{itemize}
+Optionally include a Gantt-style bullet list or diagram.
+
+\section{Research and Analysis}
+
+\subsection{Dataset Exploration}
+\begin{itemize}
+  \item Dataset size, format, and structure
+  \item Cleaning decisions and missing data
+  \item Description length, rating distribution, top authors
+\end{itemize}
+Include figures/plots if available.
+
+\subsection{Text Embedding}
+Explain how each description and query is converted to a fixed-size vector:
+\[
+\vec{v} = f_{\text{MiniLM}}(\text{text}), \quad \vec{v} \in \mathbb{R}^{384}
+\]
+Briefly discuss sentence transformers and pretrained model usage.
+
+\subsection{Vector Similarity Search with FAISS}
+Explain FAISS:
+\[
+\text{dist}(\vec{q}, \vec{b}_i) = \|\vec{q} - \vec{b}_i\|_2^2
+\]
+Describe how top-K matches are returned.
+
+\subsection{Filtering and Recommendation Logic}
+\begin{itemize}
+  \item Filter: average rating, genre match
+  \item Sort: average rating (high to low)
+  \item UI elements: query input, sliders, toggles, and result display
+\end{itemize}
+
+\subsection{Evaluation and Limitations}
+\begin{itemize}
+  \item Semantic similarity is useful but not perfect
+  \item Lack of user profiling (no collaborative filtering)
+  \item Fully local — no training updates or personalization
+\end{itemize}
+
+\section{Conclusion}
+Answer each sub-question, then conclude on the main question.
+Discuss the real-world relevance and future potential (e.g., personalization, larger embeddings, or mobile porting).
+
+\section{Reflection}
+\begin{itemize}
+  \item What worked well?
+  \item What surprised you?
+  \item What would you change if starting over?
+  \item New insights gained about ML, embeddings, or deployment
+\end{itemize}
+
+\section{About References}
+\label{sec:aboutreferences}
+All references are listed at the end of the document, in APA format. In the document itself, they are referenced in an APA approved format for in-line references. 
+If you read the document electronically, you can simply click on the reference and be taken to the reference in the reference list.

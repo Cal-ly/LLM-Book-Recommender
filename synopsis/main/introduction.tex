@@ -1,0 +1,45 @@
+\chapter{Introduction}
+\label{chapter:introduction}
+
+\section{Motivation}
+\label{sec:motivation}
+
+The purpose of this project is to explore the feasibility of running local language models in privacy-preserving environments. To this end, a book recommendation system has been selected as the practical foundation. The recommender leverages Natural Language Processing (NLP) techniques to analyze both book descriptions and free-form user queries, enabling content-based recommendations.
+
+In contrast to most cloud-based recommendation systems, this project demonstrates a fully local setup where all data processing and inference occurs on the user's own machine. This ensures that no user data is transmitted or stored externally, providing strong privacy guarantees.
+
+The goal is to evaluate whether smaller transformer-based models, specifically sentence transformers like MiniLM, are capable of delivering high-quality recommendations in an offline context. Techniques such as semantic embedding, vector similarity search, and metadata filtering are investigated to improve recommendation quality. In doing so, the project explores a broader question of how accessible and effective local AI systems can be for individual users.
+
+\section{Problem Definition}
+\label{sec:problem-definition}
+
+The project is centered around the following research question:
+
+\begin{quote}
+\textit{How can a local ML model be used to recommend books based on natural language descriptions, relying only on locally running models?}
+\end{quote}
+\label{itm:main-question}
+
+This leads to three guiding sub-questions:
+
+\begin{enumerate}
+    \item \label{itm:subq-embedding} \textit{What techniques exist for embedding text into meaningful vectors?}
+    \item \label{itm:subq-similarity} \textit{How can vector similarity be used for finding similar books?}
+    \item \label{itm:subq-limitations} \textit{What are the limitations of a local, content-only recommender?}
+\end{enumerate}
+
+These sub-questions form the conceptual framework for the research and analysis presented in the following chapters.
+
+\section{Planning}
+\label{sec:planning}
+
+The project was conducted over five weeks and divided into the following phases:
+
+\begin{itemize}
+    \item \textbf{Week 1 –} Literature review and background research on semantic similarity, embedding models, and recommender systems.
+    \item \textbf{Week 2 –} Data exploration and cleaning, including handling of missing values and metadata normalization.
+    \item \textbf{Week 3 –} Embedding and indexing: generating dense sentence embeddings and setting up FAISS for similarity search.
+    \item \textbf{Week 4 –} Development of a prototype user interface and live experimentation with queries and filters.
+    \item \textbf{Week 5 –} Final testing, evaluation, and writing of the synopsis.
+\end{itemize}
+
