@@ -21,7 +21,7 @@ MODEL_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "models"))
 AUX_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "auxiliary"))
 LOGS_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "logs"))
 os.makedirs(LOGS_DIR, exist_ok=True)
-LOG_FILE = os.path.join(LOGS_DIR, f"main-{datetime.date.today()}.log")
+LOG_FILE = os.path.join(LOGS_DIR, f"main-{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.log")
 MODEL_NAME = "all-MiniLM-L6-v2"
 
 # Setup logging

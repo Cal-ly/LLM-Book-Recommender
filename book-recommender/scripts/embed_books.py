@@ -13,7 +13,7 @@ MODEL_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "models"))
 EMBEDDING_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "embeddings"))
 LOGS_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "logs"))
 os.makedirs(LOGS_DIR, exist_ok=True)
-LOG_FILE = os.path.join(LOGS_DIR, f"embed_books-{datetime.date.today()}.log")
+LOG_FILE = os.path.join(LOGS_DIR, f"embed_books-{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.log")
 MODEL_NAME = "all-MiniLM-L6-v2"
 
 # Ensure output dirs exist
