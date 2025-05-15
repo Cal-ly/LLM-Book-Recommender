@@ -1,0 +1,154 @@
+{
+    "kind": "books#volumes",
+    "totalItems": 2,
+    "items": [
+        {
+            "kind": "books#volume",
+            "id": "ySmKh01_1p8C",
+            "etag": "APoCPiHtxPc",
+            "selfLink": "https://www.googleapis.com/books/v1/volumes/ySmKh01_1p8C",
+            "volumeInfo": {
+                "title": "The Lion, the Witch and the Wardrobe Read-Aloud Edition",
+                "authors": [
+                    "C. S. Lewis"
+                ],
+                "publisher": "Zondervan",
+                "publishedDate": "2005-11",
+                "description": "C. S. Lewis' beloved classic, now available in a large-sized, illustrated read-aloud edition.",
+                "industryIdentifiers": [
+                    {
+                        "type": "ISBN_13",
+                        "identifier": "9780060845247"
+                    },
+                    {
+                        "type": "ISBN_10",
+                        "identifier": "0060845244"
+                    }
+                ],
+                "readingModes": {
+                    "text": false,
+                    "image": false
+                },
+                "pageCount": 216,
+                "printType": "BOOK",
+                "categories": [
+                    "Juvenile Fiction"
+                ],
+                "averageRating": 5,
+                "ratingsCount": 1,
+                "maturityRating": "NOT_MATURE",
+                "allowAnonLogging": false,
+                "contentVersion": "0.1.1.0.preview.0",
+                "panelizationSummary": {
+                    "containsEpubBubbles": false,
+                    "containsImageBubbles": false
+                },
+                "imageLinks": {
+                    "smallThumbnail": "http://books.google.com/books/content?id=ySmKh01_1p8C&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+                    "thumbnail": "http://books.google.com/books/content?id=ySmKh01_1p8C&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+                },
+                "language": "en",
+                "previewLink": "http://books.google.dk/books?id=ySmKh01_1p8C&dq=isbn:9780060845247&hl=&cd=1&source=gbs_api",
+                "infoLink": "http://books.google.dk/books?id=ySmKh01_1p8C&dq=isbn:9780060845247&hl=&source=gbs_api",
+                "canonicalVolumeLink": "https://books.google.com/books/about/The_Lion_the_Witch_and_the_Wardrobe_Read.html?hl=&id=ySmKh01_1p8C"
+            },
+            "saleInfo": {
+                "country": "DK",
+                "saleability": "NOT_FOR_SALE",
+                "isEbook": false
+            },
+            "accessInfo": {
+                "country": "DK",
+                "viewability": "NO_PAGES",
+                "embeddable": false,
+                "publicDomain": false,
+                "textToSpeechPermission": "ALLOWED",
+                "epub": {
+                    "isAvailable": false
+                },
+                "pdf": {
+                    "isAvailable": true
+                },
+                "webReaderLink": "http://play.google.com/books/reader?id=ySmKh01_1p8C&hl=&source=gbs_api",
+                "accessViewStatus": "NONE",
+                "quoteSharingAllowed": false
+            },
+            "searchInfo": {
+                "textSnippet": "C. S. Lewis&#39; beloved classic, now available in a large-sized, illustrated read-aloud edition."
+            }
+        },
+        {
+            "kind": "books#volume",
+            "id": "LoohzgEACAAJ",
+            "etag": "o7S+1g15r3w",
+            "selfLink": "https://www.googleapis.com/books/v1/volumes/LoohzgEACAAJ",
+            "volumeInfo": {
+                "title": "The Lion, the Witch and the Wardrobe Read-Aloud Edition",
+                "authors": [
+                    "C. S. Lewis"
+                ],
+                "publisher": "HarperCollins",
+                "publishedDate": "2005-11-01",
+                "description": "When Peter, Susan, Edmund and Lucy are sent to stay with a kind professor who lives in the country, they can hardly imagine the extraordinary adventure that awaits them. It all begins one rainy summer day when the children explore the Professor's rambling old house. When they come across a room with an old wardrobe in the corner, Lucy immediately opens the door and gets inside. To her amazement, she suddenly finds herself standing in the clearing of a wood on a winter afternoon, with snowflakes falling through the air. Lucy has found Narnia, a magical land of Fauns and Centaurs, Nymphs and Talking Animals -- and the beautiful but evil White Witch, who has held the country in eternal winter for a hundred years.",
+                "industryIdentifiers": [
+                    {
+                        "type": "ISBN_10",
+                        "identifier": "0060845244"
+                    },
+                    {
+                        "type": "ISBN_13",
+                        "identifier": "9780060845247"
+                    }
+                ],
+                "readingModes": {
+                    "text": false,
+                    "image": false
+                },
+                "pageCount": 208,
+                "printType": "BOOK",
+                "categories": [
+                    "Juvenile Fiction"
+                ],
+                "maturityRating": "NOT_MATURE",
+                "allowAnonLogging": false,
+                "contentVersion": "preview-1.0.0",
+                "panelizationSummary": {
+                    "containsEpubBubbles": false,
+                    "containsImageBubbles": false
+                },
+                "imageLinks": {
+                    "smallThumbnail": "http://books.google.com/books/content?id=LoohzgEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+                    "thumbnail": "http://books.google.com/books/content?id=LoohzgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+                },
+                "language": "en",
+                "previewLink": "http://books.google.dk/books?id=LoohzgEACAAJ&dq=isbn:9780060845247&hl=&cd=2&source=gbs_api",
+                "infoLink": "http://books.google.dk/books?id=LoohzgEACAAJ&dq=isbn:9780060845247&hl=&source=gbs_api",
+                "canonicalVolumeLink": "https://books.google.com/books/about/The_Lion_the_Witch_and_the_Wardrobe_Read.html?hl=&id=LoohzgEACAAJ"
+            },
+            "saleInfo": {
+                "country": "DK",
+                "saleability": "NOT_FOR_SALE",
+                "isEbook": false
+            },
+            "accessInfo": {
+                "country": "DK",
+                "viewability": "NO_PAGES",
+                "embeddable": false,
+                "publicDomain": false,
+                "textToSpeechPermission": "ALLOWED",
+                "epub": {
+                    "isAvailable": false
+                },
+                "pdf": {
+                    "isAvailable": false
+                },
+                "webReaderLink": "http://play.google.com/books/reader?id=LoohzgEACAAJ&hl=&source=gbs_api",
+                "accessViewStatus": "NONE",
+                "quoteSharingAllowed": false
+            },
+            "searchInfo": {
+                "textSnippet": "When Peter, Susan, Edmund and Lucy are sent to stay with a kind professor who lives in the country, they can hardly imagine the extraordinary adventure that awaits them."
+            }
+        }
+    ]
+}
