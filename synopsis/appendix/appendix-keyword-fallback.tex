@@ -1,0 +1,41 @@
+\chapter{Fallback Classification with Keywords}
+\label{appendix:keyword-fallback}
+
+While zero-shot classification captured many semantic categories with high accuracy, some descriptions were too vague or short for the model to assign reliable labels. To compensate, a fallback strategy based on keyword matching was added.
+
+\section*{Motivation}
+Some books lack rich descriptions or use metaphoric language. For example, a horror book might avoid directly mentioning "ghosts" or "monsters" but still belong to the genre. Keywords help catch these implicit themes.
+
+\section*{Keyword Lists}
+Each predefined category was associated with a curated list of terms. For instance:
+\begin{itemize}
+  \item \textbf{Fantasy:} \texttt{magic, wizard, dragon, elf, spell}
+  \item \textbf{Science Fiction:} \texttt{space, alien, robot, galaxy, dystopia}
+  \item \textbf{Love:} \texttt{romance, passion, heartbreak, relationship}
+\end{itemize}
+
+These lists were handcrafted and refined iteratively during testing.
+
+\section*{Matching Logic}
+After zero-shot prediction:
+\begin{itemize}
+  \item Each description (or augmented description) was lowercased.
+  \item Keyword presence was checked using regular expressions.
+  \item Fallback labels were added only if not already predicted by the model.
+\end{itemize}
+
+\section*{Benefits}
+\begin{itemize}
+  \item Increases coverage of categories
+  \item Captures under-expressed themes in sparse descriptions
+  \item Keeps control in hands of the developer (interpretable logic)
+\end{itemize}
+
+\section*{Drawbacks}
+\begin{itemize}
+  \item Sensitive to phrasing and vocabulary
+  \item May overfit to genre stereotypes (e.g., “dragon” always implies Fantasy)
+  \item Requires manual tuning and maintenance
+\end{itemize}
+
+Fallback classification ensures that every book receives at least one thematic label, improving both UI filter functionality and downstream semantic search quality.

@@ -1,0 +1,56 @@
+\chapter{Conclusion}
+\label{chapter:conclusion}
+
+\section{Discussion}
+\label{sec:discussion}
+
+This project demonstrates that modern transformer-based NLP models can power effective book recommendation purely from textual content. Without user profiles or collaborative filtering, the system performs semantic matching based on enriched descriptions and lightweight local inference.
+
+Through category inference, vector embedding, and high-speed similarity search, the system enables privacy-preserving, offline recommendations — a viable alternative to cloud-based recommenders.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+The following sub-questions were addressed:
+
+\subsection*{1. What techniques exist for embedding text into meaningful vectors?}
+Pretrained transformer models like \texttt{MiniLM-L6-v2} from the \texttt{sentence-transformers} library produce dense, context-aware sentence embeddings. These vectors represent semantic content and enable meaningful similarity comparisons.
+
+\subsection*{2. How can vector similarity be used for finding similar books?}
+Books and queries are mapped into the same vector space. FAISS is used to compute nearest neighbors based on L2 distance, retrieving top-matching books efficiently from a corpus of 5,160 entries.
+
+\subsection*{3. How can genre categories be inferred and used to improve indexing and filtering?}
+Zero-shot classification with \texttt{facebook/bart-large-mnli} was used to assign semantic tags. Fallback keywords and confidence filtering ensured each book had at least one interpretable label, improving both search relevance and UI usability.
+
+\subsection*{4. What are the limitations of a local, content-only recommender?}
+The system lacks personalization, user learning, and click feedback. Results are driven solely by content similarity. However, these trade-offs are offset by strong privacy, transparency, and independence from third-party APIs.
+
+\textbf{Main research question:}
+
+\begin{quote}
+\textit{How can a local ML model be used to recommend books based on natural language descriptions, relying only on locally running models?}
+\end{quote}
+
+This work has shown that sentence embeddings, zero-shot labeling, and vector search can be combined into a compact, offline-first recommender system. Users can issue free-form queries and explore books by theme, genre, or rating — all without internet connectivity or external dependencies.
+
+\section{Reflection}
+\label{sec:reflection}
+
+The project provided insight into applied NLP, recommender architecture, and the challenges of building local-first AI applications. Key takeaways:
+
+\begin{itemize}
+    \item \textbf{Quality of input affects all stages:} Rich, well-structured descriptions significantly improve category inference and search results.
+    \item \textbf{Fallback strategies increase coverage:} When zero-shot confidence is low, keyword-based tagging preserves semantic grounding.
+    \item \textbf{Local-first ML is practical:} FAISS, MiniLM, and Streamlit form a strong open-source stack for real-time semantic querying.
+    \item \textbf{Trade-offs remain:} While private and responsive, the lack of personalization limits advanced use cases.
+\end{itemize}
+
+With more time, the project could be extended to:
+
+\begin{itemize}
+    \item Compare multiple embedding models (e.g., MPNet, SBERT).
+    \item Implement metadata-based re-ranking for top-$k$ results.
+    \item Incorporate user feedback or interactive scoring for future personalization.
+\end{itemize}
+
+Ultimately, the system proves that locally hosted NLP models can provide meaningful recommendations using only text and a consumer-grade CPU.

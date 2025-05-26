@@ -1,54 +1,62 @@
 \chapter{Dataset Exploration}
 \label{chapter:dataset}
 
-In order to leverage the dataset \cite{7k-books} used in the recommender system, it has to go through preprocessing steps necessary to enable meaningful analysis. 
-All work was performed using Pythons \texttt{pandas}, \texttt{numpy}, and \texttt{matplotlib/seaborn} libraries, as defined in the data exploration script.
+The project began with a public dataset containing metadata for over 6,800 books \cite{7k-books}. Preprocessing was necessary to enrich and validate descriptions, authorship, ratings, and structure for use in downstream models.
+
+All transformations were performed using \texttt{pandas}, \texttt{numpy}, and visualization libraries. The pipeline was scripted in modular stages.
 
 \section{Dataset Overview}
 \label{sec:dataset-overview}
 
-The initial dataset, \texttt{books.csv}, contains metadata for 6,810 books. It includes the following fields: \texttt{isbn13}, \texttt{isbn10}, \texttt{title}, \texttt{subtitle}, \texttt{authors}, \texttt{categories}, \texttt{thumbnail}, \texttt{description}, \texttt{published\_year}, \texttt{average\_rating}, \texttt{num\_pages}, and \texttt{ratings\_count}.
+The original dataset (\texttt{books.csv}) included fields such as \texttt{isbn13}, \texttt{title}, \texttt{subtitle}, \texttt{authors}, \texttt{categories}, \texttt{description}, \texttt{published\_year}, and \texttt{average\_rating}.
 
-Some fields, such as \texttt{subtitle}, \texttt{thumbnail}, and \texttt{categories}, had significant missing values. The project focuses on the fields relevant for recommendation: \texttt{description}, \texttt{average\_rating}, \texttt{num\_pages}, \texttt{published\_year}, and \texttt{authors}.
+Exploration focused on fields relevant to semantic search and UI rendering:
 
 \begin{itemize}
-    \item \texttt{title} — Book title
-    \item \texttt{authors} — Author(s)
-    \item \texttt{description} — Natural language description (often from publisher blurbs)
-    \item \texttt{average\_rating} — User rating score
-    \item \texttt{num\_pages} — Page count
-    \item \texttt{published\_year} — Year of publication
+    \item \texttt{full\_title} (from title + subtitle)
+    \item \texttt{authors}
+    \item \texttt{description}
+    \item \texttt{average\_rating}, \texttt{published\_year}, \texttt{num\_pages}
 \end{itemize}
 
-These attributes were chosen due to their utility in both preprocessing (e.g. filtering) and vector-based analysis.
-
----
-
-\section{Cleaning and Filtering}
+\section{Data Cleaning and Augmentation}
 \label{sec:data-cleaning}
 
-To ensure high-quality input for the NLP model, books with missing or unusable descriptions, ratings, publication years, or page numbers were removed. 
-This resulted in a cleaned dataset, \texttt{books\_cleaned.csv}, containing 6,507 entries.
+The cleaning process included:
 
-Two new features were engineered:
+\begin{enumerate}
+    \item Merging title and subtitle into \texttt{full\_title}
+    \item Adding binary flags (e.g., \texttt{has\_description}, \texttt{has\_thumbnail})
+    \item Enriching missing values from OpenLibrary (authors, years, thumbnails)
+    \item Filling description gaps using the Google Books API (limited to 1,000 queries/day)
+    \item Combining \texttt{subjects} and \texttt{categories} as input for classification
+\end{enumerate}
+
+Each stage included logging and result snapshots.
+
+\section{Feature Engineering}
+\label{sec:feature-engineering}
+
+Several derived features supported later filtering:
 
 \begin{itemize}
-    \item \textbf{missing\_description:} Binary indicator showing whether the description was missing.
-    \item \textbf{age\_of\_book:} Computed as $2025 - \texttt{published\_year}$.
+    \item \texttt{words\_in\_description} — Token count of final description
+    \item \texttt{description\_length} — Character length of \texttt{augmented\_description}
+    \item \texttt{has\_*} — Flags indicating field completeness
 \end{itemize}
 
----
+These helped determine which rows were usable for classification and embedding.
 
 \section{Exploratory Analysis}
 \label{sec:data-exploration}
 
-Visual and statistical analysis was performed on the cleaned dataset:
+Key visualizations were used to inform pipeline thresholds:
 
 \begin{itemize}
-    \item A \textbf{correlation heatmap} (using Spearman correlation) highlights relationships between numerical features such as number of pages, age, and average rating.
-    \item A \textbf{distribution plot of average ratings} showed a bell-shaped curve centered around 3.8–4.2. This distribution informed the design of filtering sliders in the UI.
-    \item A \textbf{publication year histogram} highlighted a strong skew toward books published after 2000.
-    \item A \textbf{top authors chart} visualized the most prolific authors in the dataset.
+    \item \textbf{Correlation heatmap:} Page count, rating, and age
+    \item \textbf{Rating distribution:} Helped define UI filters
+    \item \textbf{Publication histogram:} Confirmed skew toward post-2000 content
+    \item \textbf{Top authors chart:} Most represented contributors
 \end{itemize}
 
 \subsection{Correlation Heatmap}
@@ -84,8 +92,7 @@ Visual and statistical analysis was performed on the cleaned dataset:
     \label{fig:top-authors}
 \end{figure}
 
-These findings confirmed that the dataset was both large and diverse enough to support practical testing of the recommender system. 
-Note that the heatmap in \autoref{fig:correlation-heatmap} shows weak correlation between all members, but the relative strongest between number of pages 
-and the average rating. 
-This may indicate that readers perceive longer books — particularly in fiction — as more substantial, potentially resulting in higher ratings.
-Also that lower rated books are more rarely published and circulated widely, as seen in the histogram in \autoref{fig:rating-distribution}.
+\section{Outcome}
+\label{sec:exploration-outcome}
+
+Following augmentation and validation, 6,572 rows were retained. After category classification and filtering (Chapter~\ref{chapter:category-inference}), the dataset was narrowed to 5,160 well-labeled entries for embedding and indexing.

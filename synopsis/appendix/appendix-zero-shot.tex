@@ -1,0 +1,36 @@
+\chapter{Zero-Shot Classification}
+\label{appendix:zero-shot}
+
+Zero-shot classification is a machine learning technique that allows a model to assign labels to input text without having seen labeled examples for those specific classes. It relies on models trained on general-purpose tasks such as Natural Language Inference (NLI).
+
+\section*{Why Zero-Shot?}
+In this project, we did not have human-labeled genres for the books. Instead, we defined a set of target categories (e.g., \textit{Fantasy}, \textit{Science Fiction}, \textit{Historical}) and used a pretrained NLI model to decide whether a description "entails" each candidate label.
+
+\section*{NLI-Based Classification}
+The model used was \texttt{facebook/bart-large-mnli}, a transformer trained on premise-hypothesis relationships.
+
+Given:
+\begin{itemize}
+  \item Premise: the book description
+  \item Hypothesis: "This book is \textit{[label]}"
+\end{itemize}
+The model evaluates whether the hypothesis is entailed by the premise. A high entailment probability means the label is likely correct.
+
+\section*{Multi-Label Inference}
+Zero-shot classification supports multi-label predictions. A single description may be associated with multiple categories. Only predictions above a threshold (e.g., 0.4) were retained.
+
+\section*{Advantages}
+\begin{itemize}
+  \item No training required on project-specific data
+  \item Easily extendable to new label sets
+  \item Strong generalization using a well-trained NLI base
+\end{itemize}
+
+\section*{Limitations}
+\begin{itemize}
+  \item Performance depends on hypothesis phrasing (e.g., "This book is \textit{fantasy}" vs "This story involves \textit{fantasy}")
+  \item May confuse overlapping or abstract categories
+  \item Computationally slower than simple keyword matching
+\end{itemize}
+
+Zero-shot classification enabled this project to assign interpretable categories to books without manual labeling, supporting both UI filtering and statistical analysis.

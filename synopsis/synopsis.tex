@@ -71,11 +71,12 @@
 
 \input{main/2methodology}
 \input{main/3dataset}
-\input{main/4embedding}
-\input{main/5similarity}
-\input{main/6interface}
-\input{main/7performance}
-\input{main/8conclusion}
+\input{main/4category-inference}
+\input{main/5embedding}
+\input{main/6similarity}
+\input{main/7interface}
+\input{main/8performance}
+\input{main/9conclusion}
 
 %% Prevent urls running into margins in bibliography
 \setcounter{biburlnumpenalty}{7000}
@@ -90,8 +91,17 @@
 %% ----------------------------------------------------------------------
 
 \appendix
-\input{appendix/a-symbols}
-\input{appendix/b-math-theory}
-\input{appendix/c-ml-theory}
+
+% Glossaries
+\include{appendix/appendix-symbols}
+\include{appendix/appendix-glossary}
+
+% Theoretical Appendices
+\include{appendix/appendix-sentence-embeddings}
+\include{appendix/appendix-zero-shot}
+\include{appendix/appendix-faiss}
+\include{appendix/appendix-confidence-filtering}
+\include{appendix/appendix-keyword-fallback}
+\include{appendix/appendix-semantic-vs-keyword}
 
 \end{document}

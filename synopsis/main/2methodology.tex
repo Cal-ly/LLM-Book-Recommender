@@ -1,100 +1,82 @@
 \chapter{Methodology and Structure}
 \label{chapter:methodology}
 
-This project follows a research-based prototype methodology. 
-Rather than developing a commercial software product, the goal is to explore the scientific and 
-technical feasibility of running semantic book recommendations using local machine learning tools.
-The findings—both theoretical and experimental—constitute the core deliverables of this project.
+This project follows a research-driven prototype methodology aimed at exploring the feasibility of using local language models for semantic book recommendations. The goal is not to build a commercial product, but to test how well local ML tools can perform end-to-end recommendation without internet access.
 
 \section{Research Approach}
 \label{sec:research-approach}
 
-The project is based on a combination of literature review and hands-on implementation. 
-Each aspect of the methodology was selected to support answering the sub-questions defined in Section~\ref{sec:problem-definition}.
+The methodology combines literature review, modular implementation, and empirical testing. Each decision supports the research question and sub-questions (see Section~\ref{sec:problem-definition}).
 
 \begin{itemize}
-    \item \textbf{Literature Review:} Relevant topics included natural language processing (NLP), sentence embedding techniques, 
-    recommender systems, and similarity search. Key technologies such as \texttt{MiniLM}, \texttt{FAISS}, 
-    and \texttt{Streamlit} were studied through documentation and other sources. As this field is rapidly evolving,
-    the latest knowledge regarding pracitcal applications was prioritized, e.g. \cite{handson-ml}.
+    \item \textbf{Literature Review:} Key areas included sentence embeddings, content-based recommenders, zero-shot classification, and privacy-aware ML. Emphasis was placed on open-source tools and local-first design \cite{handson-ml}.
     
-    \item \textbf{Implementation:} The following tools and libraries were used throughout the project:
+    \item \textbf{Implementation:}
     \begin{itemize}
-        \item \texttt{Python} for scripting, preprocessing, and experimentation.
-        \item \texttt{pandas}, \texttt{seaborn}, and \texttt{matplotlib} for data analysis and visualization.
-        \item \texttt{sentence-transformers} (MiniLM-L6-v2) to generate semantic vector representations.
-        \item \texttt{FAISS} to index and search high-dimensional embeddings efficiently.
-        \item \texttt{Streamlit} to build an interactive, privacy-preserving user interface.
+        \item \texttt{Python} + \texttt{pandas} for scripting and orchestration.
+        \item \texttt{sentence-transformers} (\texttt{MiniLM-L6-v2}) for text embeddings.
+        \item \texttt{facebook/bart-large-mnli} for zero-shot category inference.
+        \item \texttt{FAISS} for semantic vector indexing.
+        \item \texttt{Streamlit} for an interactive frontend.
     \end{itemize}
-    
-    \item \textbf{Testing:} Practical testing included a range of user queries and filtering conditions to observe whether recommendations matched the query intent semantically.
-\end{itemize}
 
----
+    \item \textbf{Data Processing:} Categories were refined using confidence scores, fallbacks, and correlation-based filtering.
+    
+    \item \textbf{Testing:} A variety of query types were tested with and without filters to evaluate relevance and robustness.
+\end{itemize}
 
 \section{Evaluation Criteria}
 \label{sec:evaluation-criteria}
 
-As no supervised training or labeled ground-truth data was involved, the system is evaluated using non-traditional metrics. The following criteria were applied:
+No labeled test set was available, so evaluation focused on:
 
 \begin{itemize}
-    \item \textbf{Qualitative Relevance:} Whether the recommendations appear semantically relevant to a human evaluator.
-    \item \textbf{Responsiveness:} How quickly the system responds to user queries on consumer hardware.
-    \item \textbf{Offline Capability:} Verification that all processing occurs locally, without internet access.
-    \item \textbf{Scalability:} Exploration of performance with larger datasets and indexing sizes.
+    \item \textbf{Semantic relevance} — how well results match query intent.
+    \item \textbf{Responsiveness} — ability to respond quickly on CPU-only hardware.
+    \item \textbf{Filtering utility} — impact of genre/rating filters.
+    \item \textbf{Offline execution} — system runs without network access.
 \end{itemize}
 
-This methodology supports the central research question posed in \autoref{itm:main-question}, and particularly sub-questions~\ref{itm:subq-embedding} and~\ref{itm:subq-similarity}, by grounding each system component in both theoretical research and empirical testing.
-
----
+These metrics align with sub-questions~\ref{itm:subq-embedding}, \ref{itm:subq-similarity}, and \ref{itm:subq-classification}.
 
 \section{Structure of the Synopsis}
 \label{sec:structure-synopsis}
-The synopsis is structured with each chapter addressing a specific aspect of the project and each chapter builds upon the previous one to provide an overview of the project.
+
 \subsection{Main Chapters}
-\begin{itemize}
-    \item \cref{chapter:introduction} introduces the motivation, problem definition, and research approach.
-    \item \cref{chapter:methodology} describes the research methodology and evaluation criteria.
-    \item \cref{chapter:dataset} explores the dataset used, including its cleaning and preprocessing. 
-    \item \cref{chapter:embedding} covers the embedding process, including the theory and implementation of sentence embeddings. 
-    \item \cref{chapter:similarity} describes the FAISS indexing and similarity search process.
-    \item \cref{chapter:interface} describes the user interface design and query workflow.
-    \item \cref{chapter:performance} discusses the performance evaluation and challenges of the system, including qualitative and quantitative metrics.
-    \item \cref{chapter:conclusion} discusses the results, limitations, and future work.
-\end{itemize}
+The main chapters cover the core components of the system, with each addressing a specific aspect of the methodology.
 
 \subsection{Appendices}
-A deeper dive into the technical details of the implementation is provided in the appendices, including a more theoretical background on both ML and mathematical concepts.
-This has been deliberately kept separate from the main chapters, as the focus of the synopsis is on the practical application and results rather than the underlying theory.
-
----
+Supporting materials include example code, glossary terms, and supporting formulas.
 
 \section{Application Architecture}
 \label{sec:application-architecture}
-The architecture of the book recommendation system:
+
+The overall system is modular and layered:
 
 \begin{tikzpicture}[node distance=1.5cm]
+    \node (desc) [block] {Input: Book Metadata};
+    \node (augment) [block, below of=desc] {Augment + Clean Description};
+    \node (classify) [block, below of=augment] {Category Inference (ZSC + Fallback)};
+    \node (filtering) [block, below of=classify] {Score-Based Filtering};
 
-    \node (desc) [block] {Input: Book Descriptions};
-    \node (minilm) [block, below of=desc] {MiniLM Embedding};
-    \node (index) [block, below of=minilm] {FAISS Index Construction};
-    
-    \node (query) [block, right of=desc, xshift=6cm] {Input: User Query};
+    \node (embed) [block, below of=filtering] {MiniLM Embedding};
+    \node (index) [block, below of=embed] {FAISS Index};
+
+    \node (query) [block, right of=desc, xshift=6cm] {User Query};
     \node (qembed) [block, below of=query] {MiniLM Embedding (Query)};
-    \node (simsearch) [block, below of=qembed] {Vector Similarity Search (L2 Distance)};
-    
-    \node (topk) [block, below of=simsearch] {Top K Similar Books};
-    \node (filter) [block, below of=topk] {Apply Filters (Rating, Genre)};
-    \node (output) [block, below of=filter] {Return Final Recommendations};
-    
-    % Arrows
-    \draw [arrow] (desc) -- (minilm);
-    \draw [arrow] (minilm) -- (index);
+    \node (search) [block, below of=qembed] {FAISS Similarity Search};
+    \node (refine) [block, below of=search] {Apply UI Filters (Tags, Rating)};
+    \node (output) [block, below of=refine] {Display Top-K Recommendations};
+
+    \draw [arrow] (desc) -- (augment);
+    \draw [arrow] (augment) -- (classify);
+    \draw [arrow] (classify) -- (filtering);
+    \draw [arrow] (filtering) -- (embed);
+    \draw [arrow] (embed) -- (index);
+
     \draw [arrow] (query) -- (qembed);
-    \draw [arrow] (qembed) -- (simsearch);
-    \draw [arrow] (index) -- (simsearch);
-    \draw [arrow] (simsearch) -- (topk);
-    \draw [arrow] (topk) -- (filter);
-    \draw [arrow] (filter) -- (output);
-    
+    \draw [arrow] (qembed) -- (search);
+    \draw [arrow] (index) -- (search);
+    \draw [arrow] (search) -- (refine);
+    \draw [arrow] (refine) -- (output);
 \end{tikzpicture}

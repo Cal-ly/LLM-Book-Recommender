@@ -1,0 +1,57 @@
+\chapter{Text Embedding}
+\label{chapter:embedding}
+
+The semantic recommender relies on converting each book entry into a dense vector representation, allowing high-dimensional similarity comparison. This is achieved through sentence embeddings using a pretrained transformer model. By embedding descriptive text into vector space, the system can retrieve semantically related books using efficient mathematical distance metrics.
+
+\section{Sentence Embedding Theory}
+\label{sec:embedding-theory}
+
+Sentence embeddings are fixed-size vector representations of variable-length text sequences. They capture semantic similarity, enabling meaningful comparisons via cosine similarity or L2 distance. Formally, for an input string $t$, the embedding function $f$ maps it into $\mathbb{R}^d$:
+
+\[
+\vec{v} = f(t), \quad \vec{v} \in \mathbb{R}^{384}
+\]
+
+The model \texttt{all-MiniLM-L6-v2} from \cite{sentence-transformers} is used.\\
+It is a lightweight transformer from the \texttt{sentence-transformers} library. It provides a strong trade-off between performance and inference speed, producing 384-dimensional vectors suitable for local, offline use.
+
+\section{Embedding Implementation}
+\label{sec:embedding-implementation}
+
+Embeddings were generated from the refined and filtered dataset \texttt{books\_indexed.csv}, which includes a special \texttt{search\_text} field constructed for each row:
+
+{\small
+\begin{quote}
+\texttt{Title: \{\texttt{full\_title}\}. Author: \{\texttt{authors}\}. Description: \{\texttt{description}\}.}
+\end{quote}
+}
+
+This composite text ensures that not only the description but also the title and author are considered in the embedding. The embedding pipeline performs the following:
+
+\begin{enumerate}
+    \item Loads \texttt{search\_text} entries from \texttt{books\_indexed.csv}.
+    \item Encodes each entry using \texttt{SentenceTransformer}.
+    \item Outputs a NumPy array of shape $(n, 384)$, where $n=5,160$.
+    \item Adds the matrix to a \texttt{FAISS} index for fast similarity lookup.
+    \item Saves associated metadata to \texttt{books\_indexed\_with\_embeddings.csv}.
+\end{enumerate}
+
+\section{Embedding Configuration}
+\label{sec:embedding-config}
+
+The embedding system is configured as follows:
+
+\begin{itemize}
+    \item \textbf{Model:} \texttt{all-MiniLM-L6-v2}
+    \item \textbf{Dimension:} 384
+    \item \textbf{Library:} \texttt{sentence-transformers}
+    \item \textbf{Distance Metric:} L2 distance (used by FAISS)
+    \item \textbf{Backend:} CPU inference
+    \item \textbf{Input Field:} \texttt{search\_text}
+    \item \textbf{Entries Embedded:} 5,160 books
+\end{itemize}
+
+\section{Summary}
+\label{sec:embedding-summary}
+
+Embedding is the core enabler of semantic recommendation. By using a compact transformer model to generate high-quality vector representations from full book metadata, the system achieves relevance without relying on user ratings, tags, or prior behavior. This allows for meaningful query matches using purely content-based inference—preserving privacy and enabling offline performance.

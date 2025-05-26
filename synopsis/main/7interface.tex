@@ -1,0 +1,67 @@
+\chapter{User Interface}
+\label{chapter:interface}
+
+Although not a machine learning component, the user interface (UI) enables users to interact with the system naturally and intuitively. It is implemented in \texttt{Streamlit}, a lightweight Python framework suitable for local-first applications.
+
+\section{Design Principles}
+\label{sec:ui-design}
+
+The UI emphasizes simplicity and privacy. All inference, vector search, and filtering are executed locally.
+
+Design goals:
+
+\begin{itemize}
+    \item Enable concept-based, natural language search.
+    \item Support filtering and sorting using metadata (rating, tags).
+    \item Eliminate external dependencies, aside from optional cover lookups.
+\end{itemize}
+
+\section{Query Workflow}
+\label{sec:ui-query-workflow}
+
+Users submit free-form queries (e.g., \texttt{"Books about survival in a post-apocalyptic world"}) via a single input box.
+The process:
+
+\begin{enumerate}
+    \item The query is embedded with the same MiniLM model.
+    \item The vector is passed to FAISS to find the 60 nearest neighbors.
+    \item Results are filtered and sorted.
+    \item 6 book cards are shown per page.
+\end{enumerate}
+
+\section{Filtering and Sorting}
+\label{sec:ui-filtering}
+
+Users can interactively refine results using:
+
+\begin{itemize}
+    \item \textbf{Genre/Tag Filter:} Multi-select from inferred categories.
+    \item \textbf{Rating Sort:} Toggle ascending/descending by average rating.
+    \item \textbf{Pagination:} Navigate in groups of 6 results.
+\end{itemize}
+
+Filters are applied after semantic matching.
+
+\section{Result Display}
+\label{sec:ui-display}
+
+Each book is shown as a card with:
+
+\begin{itemize}
+    \item \textbf{Cover Image:} Loaded from URL, with local fallback.
+    \item \textbf{Title and Author}
+    \item \textbf{Average Rating} as stars
+    \item \textbf{Short Description} (first 300 characters)
+    \item \textbf{Refined Categories}
+\end{itemize}
+
+\section{Privacy and Offline Execution}
+\label{sec:ui-privacy}
+
+The system offers full offline functionality:
+
+\begin{itemize}
+    \item No data is collected or transmitted.
+    \item No login, cookies, or tracking.
+    \item Fully functional without internet access.
+\end{itemize}

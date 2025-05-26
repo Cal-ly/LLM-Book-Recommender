@@ -1,0 +1,86 @@
+\chapter{Performance and Evaluation Challenges}
+\label{chapter:performance}
+
+This chapter discusses how the system's performance was evaluated in the absence of user interaction or labeled ground-truth data. Traditional metrics such as accuracy or recall are not applicable to semantic similarity or unsupervised recommendation. As such, evaluation was divided into subjective, statistical, and system performance components.
+
+\section{Evaluation Without Labels}
+\label{sec:no-labels}
+
+Unlike supervised learning, this recommender system does not predict a fixed class label or known output. It embeds books and queries into a shared semantic space and retrieves nearest neighbors based on vector distance. As a result:
+
+\begin{itemize}
+    \item There is no single “correct” recommendation for a given query.
+    \item Metrics like precision and recall do not apply in the absence of labeled matches.
+    \item Offline systems cannot collect feedback to infer satisfaction or click-through rate.
+\end{itemize}
+
+\section{Qualitative Evaluation}
+\label{sec:qualitative-eval}
+
+Evaluation relied on practical usage testing and subjective judgment:
+
+\begin{itemize}
+    \item A wide variety of test queries were manually issued.
+    \item The semantic alignment of results was judged by human inspection.
+    \item Edge cases such as extremely short queries or unusual concepts (e.g., “existential loneliness in space”) were tested.
+\end{itemize}
+
+These informal tests confirmed that recommendations typically aligned well with the user’s intent, especially when descriptions were rich and the classification succeeded.
+
+\section{Category Inference Evaluation}
+\label{sec:category-eval}
+
+Although no labeled test set existed for genre prediction, basic model evaluation was conducted:
+
+\begin{itemize}
+    \item Confidence scores were retained for each category prediction.
+    \item Categories were filtered based on a score threshold ($\geq 0.4$).
+    \item F1-score, precision, and recall were plotted per category using a trusted subset.
+    \item Keyword-based fallback performance was analyzed independently.
+\end{itemize}
+
+This analysis confirmed that certain categories (e.g. \textit{Fantasy}, \textit{Love}) were well-captured by the model, while others (e.g. \textit{Philosophy \& Poetry}) relied more heavily on keyword support.
+
+\section{Responsiveness and Latency}
+\label{sec:latency}
+
+Runtime performance was measured on a CPU-based consumer laptop with no GPU acceleration:
+
+\begin{itemize}
+    \item \textbf{Embedding a single query:} $< 0.2$ seconds (MiniLM-L6-v2)
+    \item \textbf{Top-60 vector search:} $< 10$ milliseconds (FAISS \texttt{IndexFlatL2})
+    \item \textbf{UI rendering (6 results/page):} $< 2$ seconds including image fallback
+\end{itemize}
+
+The system was fully usable in real time, validating its suitability for privacy-respecting offline deployment.
+
+\section{Scalability Considerations}
+\label{sec:scaling}
+
+Scalability remains a practical concern, especially if the dataset grows:
+
+\begin{itemize}
+    \item \textbf{Indexing:} FAISS is fast for exact search with thousands of vectors, but approximate methods like HNSW or IVF may be needed at scale.
+    \item \textbf{Embedding refresh:} All books must be re-encoded when changing the model or dataset.
+    \item \textbf{Post-filtering:} Filtering and sorting happen after retrieval and may become slow for large result sets.
+\end{itemize}
+
+For a production system, batching, vector quantization, or UI caching would be necessary.
+
+\section{Limitations of Offline Evaluation}
+\label{sec:limitations}
+
+The offline, user-free nature of the prototype limits what can be empirically measured:
+
+\begin{itemize}
+    \item \textbf{Relevance:} Only developer judgment is available.
+    \item \textbf{Discovery:} No tracking exists to measure novelty or diversity.
+    \item \textbf{Bias Detection:} Over-representation of popular authors or themes may not be obvious without user feedback.
+\end{itemize}
+
+These limitations are expected in an exploratory prototype and suggest directions for future iterations.
+
+\section{Summary}
+\label{sec:performance-summary}
+
+Performance evaluation focused on semantic quality, speed, and usability. While classical metrics were not applicable, confidence filtering, qualitative testing, and runtime benchmarks collectively demonstrate that the system is performant, accurate, and well-aligned with its offline-first goals.

@@ -1,1 +1,1 @@
-Model used: all-MiniLM-L6-v2\n
+Model used: all-MiniLM-L6-v2

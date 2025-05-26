@@ -1,0 +1,45 @@
+\chapter{Similarity Search with FAISS}
+\label{appendix:faiss}
+
+Similarity search is the task of finding items most similar to a given query in a high-dimensional vector space. This project uses FAISS (Facebook AI Similarity Search) to perform fast, exact nearest-neighbor lookups over book embeddings.
+
+\section*{Motivation}
+Books and queries are embedded into the same semantic vector space. To recommend relevant books, the system retrieves the closest vectors (books) to a given query vector.
+
+\section*{What is FAISS?}
+FAISS is a C++/Python library developed by Meta for fast search across large collections of dense vectors. It supports both exact and approximate search methods.
+
+\section*{Indexing Method Used}
+This system uses the exact search index:
+\begin{itemize}
+  \item \texttt{IndexFlatL2} — Computes L2 (Euclidean) distance between the query and all book vectors
+  \item Suitable for small to medium datasets (\textasciitilde5,000 vectors)
+  \item No compression or quantization
+\end{itemize}
+
+\section*{Search Workflow}
+\begin{enumerate}
+  \item Book metadata is converted to \texttt{search\_text} and embedded
+  \item Vectors are added to a FAISS index
+  \item At query time, the user input is embedded
+  \item FAISS returns top-$k$ nearest neighbors
+  \item Metadata is retrieved from the indexed CSV
+\end{enumerate}
+
+\section*{Distance Metric}
+FAISS computes squared L2 distance:
+\[ \text{dist}(\vec{q}, \vec{b}_i) = \| \vec{q} - \vec{b}_i \|_2^2 \]
+
+Lower values indicate higher semantic similarity.
+
+\section*{Benefits}
+\begin{itemize}
+  \item Extremely fast for exact matching on CPU
+  \item Integrates easily with NumPy and PyTorch
+  \item Fully offline and open source
+\end{itemize}
+
+\section*{Alternatives}
+For larger datasets, approximate methods like HNSW, IVF, or PQ (quantization) may be more scalable but require tuning.
+
+FAISS was ideal for this project due to its simplicity and performance at the given scale.

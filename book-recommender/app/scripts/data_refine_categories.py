@@ -35,21 +35,18 @@ categories = [
     "Fantasy",
     "Science Fiction",
     "Love",
-    "Mystery",                # Merged Suspense + Detective
+    "Mystery",                 # Merged Suspense + Detective
     "Adventure",
-    "Personal Development",   # Merged Psychology + Self-Education
+    "Personal Development",
     "Young Adult",
     "Children's",
-    "Poetry",
     "Religion",
-    "History",
-    "Philosophy",
-    "Biography",
+    "Historical",              # Merged Biography + History
+    "Philosophy & Poetry",     # Merged Poetry + Philosophy
     "Non-fiction",
     "Horror"
 ]
 
-# Refined and expanded keyword-based fallback rules
 # Refined and expanded keyword-based fallback rules
 fallback_keywords = {
     "Love": [
@@ -58,9 +55,9 @@ fallback_keywords = {
         "passion", "love triangle", "devotion", "intimacy", "relationship", "flirting", "adoration"
     ],
     "Horror": [
-        "zombie", "vampire", "werewolf", "haunted house", "ghost", "exorcism", "paranormal",
-        "creepy doll", "possession", "evil spirit", "slasher", "nightmare", "macabre", "phantom",
-        "demonic", "supernatural", "terror", "darkness", "eerie", "chilling", "occult", "fear"
+        "exorcism", "paranormal", "creepy doll", "possession", "evil spirit", "slasher", "nightmare", 
+        "macabre", "phantom", "demonic", "supernatural", "terror", "darkness", "eerie", "chilling", 
+        "occult", "fear"
     ],
     "Personal Development": [
         "self-help", "resilience", "mindset", "coaching", "productivity", "goal setting", 
