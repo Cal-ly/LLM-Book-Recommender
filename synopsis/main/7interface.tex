@@ -1,67 +1,81 @@
 \chapter{User Interface}
 \label{chapter:interface}
 
-Although not a machine learning component, the user interface (UI) enables users to interact with the system naturally and intuitively. It is implemented in \texttt{Streamlit}, a lightweight Python framework suitable for local-first applications.
+The user interface enables interaction with the semantic book recommendation system. 
+While not a machine learning component, it plays a crucial role in usability, filtering, and presentation. 
+The interface is implemented using \texttt{Streamlit}, a lightweight Python framework suitable for local-first applications.
 
 \section{Design Principles}
 \label{sec:ui-design}
 
-The UI emphasizes simplicity and all inference, vector search, and filtering are executed locally.
-
-Design goals:
+The UI was designed with simplicity and responsiveness in mind. It supports end-to-end offline operation. Design goals included:
 
 \begin{itemize}
-    \item Enable concept-based, natural language search.
-    \item Support filtering and sorting using metadata (rating, tags).
-    \item Eliminate external dependencies, aside from optional cover lookups.
+    \item Concept-based natural language search
+    \item Multi-faceted filtering by category and rating
+    \item Minimal dependencies and fast startup
+    \item Clear presentation of recommendations
 \end{itemize}
+
+All inference and retrieval logic runs locally.
 
 \section{Query Workflow}
 \label{sec:ui-query-workflow}
 
-Users submit free-form queries (e.g., \texttt{"Books about survival in a post-apocalyptic world"}) via a single input box.
-The process:
+The system accepts a free-form text query from the user (e.g., \textit{``Books about surviving on Mars''}). The workflow proceeds as follows:
 
 \begin{enumerate}
-    \item The query is embedded with the same MiniLM model.
-    \item The vector is passed to FAISS to find the 60 nearest neighbors.
-    \item Results are filtered and sorted.
-    \item 6 book cards are shown per page.
+    \item Query is embedded using the MiniLM model.
+    \item The FAISS index returns the top 60 nearest book vectors.
+    \item Filtering and sorting options are applied.
+    \item Six book cards are rendered per page.
 \end{enumerate}
+
+This approach allows expressive, language-based search.
 
 \section{Filtering and Sorting}
 \label{sec:ui-filtering}
 
-Users can interactively refine results using:
+Users can refine results with:
 
 \begin{itemize}
-    \item \textbf{Genre/Tag Filter:} Multi-select from inferred categories.
-    \item \textbf{Rating Sort:} Toggle ascending/descending by average rating.
-    \item \textbf{Pagination:} Navigate in groups of 6 results.
+    \item \textbf{Category filter:} Multi-select widget for genre labels
+    \item \textbf{Rating sort:} Toggle for ascending/descending order
+    \item \textbf{Pagination:} Adjustable page selection for navigation
 \end{itemize}
 
-Filters are applied after semantic matching.
+Filters are applied after FAISS similarity search.
 
 \section{Result Display}
 \label{sec:ui-display}
 
-Each book is shown as a card with:
+Each result is rendered as a card containing:
 
 \begin{itemize}
-    \item \textbf{Cover Image:} Loaded from URL, with local fallback.
-    \item \textbf{Title and Author}
-    \item \textbf{Average Rating} as stars
-    \item \textbf{Short Description} (first 300 characters)
-    \item \textbf{Refined Categories}
+    \item Book cover image (URL with fallback)
+    \item Full title and author
+    \item Average rating, number of pages, and publication year
+    \item Description excerpt (up to 300 characters)
+    \item Refined categories
 \end{itemize}
+
+The layout ensures readability and intuitive navigation.
 
 \section{Privacy and Offline Execution}
 \label{sec:ui-privacy}
 
-The system offers full offline functionality:
+The application is designed for full offline use:
 
 \begin{itemize}
-    \item No data is collected or transmitted.
-    \item No login, cookies, or tracking.
-    \item Fully functional without internet access.
+    \item No tracking, cookies, or login
+    \item No data transmission to external servers
+    \item Book data, models, and index are stored locally
 \end{itemize}
+
+This ensures data privacy, fast load times, and compatibility with low-resource environments.
+
+\section{Summary}
+\label{sec:ui-summary}
+
+The Streamlit interface allows users to interact with the system seamlessly. 
+Natural language search, combined with real-time filtering and semantic recommendations, creates an intuitive and private discovery experience.

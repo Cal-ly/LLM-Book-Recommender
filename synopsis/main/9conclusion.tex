@@ -1,56 +1,70 @@
 \chapter{Conclusion}
 \label{chapter:conclusion}
 
+This chapter summarizes the findings and outcomes of the project, reflects on its limitations, and revisits the original research questions.
+
 \section{Discussion}
 \label{sec:discussion}
 
-This project demonstrates that modern transformer-based NLP models can power effective book recommendation purely from textual content. Without user profiles or collaborative filtering, the system performs semantic matching based on enriched descriptions and lightweight local inference.
+This project demonstrated that transformer-based models can power a local, content-only book recommendation system. Without requiring user profiles or collaborative filtering, the system delivers semantically meaningful recommendations based entirely on book metadata and free-text queries.
 
-Through category inference, vector embedding, and high-speed similarity search, the system enables offline, local recommendations — a viable alternative to cloud-based recommenders.
+The end-to-end system consisted of:
+\begin{itemize}
+    \item Augmented and cleaned metadata for over 6,800 books
+    \item Zero-shot genre inference using BART-MNLI with fallback keyword enrichment
+    \item Semantic embeddings via MiniLM
+    \item FAISS-based vector search
+    \item A responsive, private UI implemented in Streamlit
+\end{itemize}
+
+With no reliance on internet access, the system runs entirely offline and respects user privacy. It is suitable for low-resource environments and educational use cases.
 
 \section{Conclusion}
 \label{sec:conclusion}
 
-The following sub-questions were addressed:
+The system successfully addressed all four research sub-questions:
 
-\subsection*{1. What techniques exist for embedding text into meaningful vectors?}
-Pretrained transformer models like \texttt{MiniLM-L6-v2} from the \texttt{sentence-transformers} library produce dense, context-aware sentence embeddings. These vectors represent semantic content and enable meaningful similarity comparisons.
+\begin{enumerate}
+    \item \textbf{What techniques exist for embedding text into meaningful vectors?}  
+    Pretrained sentence transformers like MiniLM encode text into high-dimensional semantic vectors, enabling rich similarity comparisons.
 
-\subsection*{2. How can vector similarity be used for finding similar books?}
-Books and queries are mapped into the same vector space. FAISS is used to compute nearest neighbors based on L2 distance, retrieving top-matching books efficiently from a corpus of 5,160 entries.
+    \item \textbf{How can vector similarity be used for finding similar books?}  
+    FAISS enables fast nearest-neighbor retrieval in vector space, allowing queries to return top-matching books based on content alone.
 
-\subsection*{3. How can genre categories be inferred and used to improve indexing and filtering?}
-Zero-shot classification with \texttt{facebook/bart-large-mnli} was used to assign semantic tags. Fallback keywords and confidence filtering ensured each book had at least one interpretable label, improving both search relevance and UI usability.
+    \item \textbf{How can genre categories be inferred and used for filtering?}  
+    BART-MNLI enables zero-shot classification of genre labels. Fallback keyword rules and confidence filtering improve label coverage and reliability.
 
-\subsection*{4. What are the limitations of a local, content-only recommender?}
-The system lacks personalization, user learning, and click feedback. Results are driven solely by content similarity. However, these trade-offs are offset by strong privacy, transparency, and independence from third-party APIs.
+    \item \textbf{What are the limitations of a local, content-only recommender?}  
+    The system lacks personalization and behavior-driven refinement. However, it compensates with transparency, offline execution, and semantic precision.
+\end{enumerate}
 
+\noindent
 \textbf{Main research question:}
 
 \begin{quote}
 \textit{How can a local ML model be used to recommend books based on natural language descriptions, relying only on locally running models?}
 \end{quote}
 
-This work has shown that sentence embeddings, zero-shot labeling, and vector search can be combined into a compact, offline-first recommender system. Users can issue free-form queries and explore books by theme, genre, or rating — all without internet connectivity or external dependencies.
+This was answered by developing and validating a fully local recommendation system that performs semantic classification, embedding, indexing, and retrieval — all on-device.
 
 \section{Reflection}
 \label{sec:reflection}
 
-The project provided insight into applied NLP, recommender architecture, and the challenges of building local-first AI applications. Key takeaways:
+The project offered valuable insights into building ML-powered applications under strict resource constraints. Key lessons include:
 
 \begin{itemize}
-    \item \textbf{Quality of input affects all stages:} Rich, well-structured descriptions significantly improve category inference and search results.
-    \item \textbf{Fallback strategies increase coverage:} When zero-shot confidence is low, keyword-based tagging preserves semantic grounding.
-    \item \textbf{Local-first ML is practical:} FAISS, MiniLM, and Streamlit form a strong open-source stack for real-time semantic querying.
-    \item \textbf{Trade-offs remain:} While private and responsive, the lack of personalization limits advanced use cases.
+    \item \textbf{Description quality drives results:} Well-written descriptions significantly enhance semantic accuracy.
+    \item \textbf{Fallbacks expand coverage:} Keyword-based strategies improve classification when the model lacks confidence.
+    \item \textbf{Local-first ML is viable:} Even compact transformer models provide robust performance on consumer hardware.
+    \item \textbf{Simplicity over complexity:} Lightweight, modular design reduced failure points and increased maintainability.
 \end{itemize}
 
-With more time, the project could be extended to:
+With more time, the system could be extended to include:
 
 \begin{itemize}
-    \item Compare multiple embedding models (e.g., MPNet, SBERT).
-    \item Implement metadata-based re-ranking for top-$k$ results.
-    \item Incorporate user feedback or interactive scoring for future personalization.
+    \item Comparison of embedding models (e.g., MPNet, SBERT)
+    \item Re-ranking of results based on metadata
+    \item Interactive user feedback or offline learning
 \end{itemize}
 
-Ultimately, the system proves that locally hosted NLP models can provide meaningful recommendations using only text and a consumer-grade CPU.
+The project demonstrates that privacy-respecting, offline-first NLP systems are not only possible but practical. This aligns with emerging interest in edge-based AI and user-sovereign computing.
