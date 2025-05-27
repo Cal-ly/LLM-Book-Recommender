@@ -4,7 +4,8 @@
 To enable semantic filtering and genre-aware recommendations, each book was assigned one or more thematic categories. This process combined zero-shot classification, keyword-based fallback strategies, and confidence-based filtering.
 
 \section{Zero-Shot Classification with BART-MNLI}
-Each book's metadata was combined into an \texttt{augmented\_description}, containing title, author, publication year, and description. This composite text was passed into the \texttt{facebook/bart-large-mnli} model using Hugging Face’s zero-shot classification pipeline.
+Each book's metadata was combined into an \texttt{augmented\_description}, containing title, author, publication year, and description. 
+This composite text was passed into the \texttt{facebook/bart-large-mnli} model using Hugging Face’s zero-shot classification pipeline \parencite{bart-large-mnli}.
 
 Thirteen candidate labels were defined (e.g., \textit{Fantasy}, \textit{Love}, \textit{Non-fiction}). For each label, a confidence score was returned. Only scores $\geq 0.4$ were retained to ensure relevance. Books often received multiple labels.
 

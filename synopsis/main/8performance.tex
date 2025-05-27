@@ -62,7 +62,7 @@ This confirms that the system operates in real time on modest hardware, supporti
 While the current dataset (5,160 entries) is manageable, scaling raises practical challenges:
 
 \begin{itemize}
-    \item \textbf{Indexing:} FAISS IndexFlatL2 is efficient but linear in search time; approximate methods (e.g., HNSW) may be needed for larger corpora.
+    \item \textbf{Indexing:} FAISS IndexFlatL2 is efficient but linear in search time; approximate methods may be needed for larger corpora.
     \item \textbf{Re-embedding:} Changing models or descriptions requires recomputing all embeddings.
     \item \textbf{Filtering:} UI-side filtering and sorting scale linearly with post-search result volume.
 \end{itemize}

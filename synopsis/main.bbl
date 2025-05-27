@@ -19,6 +19,108 @@
 
 \refsection{0}
   \datalist[entry]{apa/apasortcite//global/global}
+    \entry{faiss}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=05ee48ba5bc1070bdbf19ed26a310171}{%
+           family={AI},
+           familyi={A\bibinitperiod},
+           given={Meta},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{05ee48ba5bc1070bdbf19ed26a310171}
+      \strng{fullhash}{05ee48ba5bc1070bdbf19ed26a310171}
+      \strng{bibnamehash}{05ee48ba5bc1070bdbf19ed26a310171}
+      \strng{authorbibnamehash}{05ee48ba5bc1070bdbf19ed26a310171}
+      \strng{authornamehash}{05ee48ba5bc1070bdbf19ed26a310171}
+      \strng{authorfullhash}{05ee48ba5bc1070bdbf19ed26a310171}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{FAISS Facebook AI Similarity Search}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://faiss.ai/
+      \endverb
+      \verb{url}
+      \verb https://faiss.ai/
+      \endverb
+    \endentry
+    \entry{7k-books}{dataset}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=aa72f98d31bf8f1ee763f0bf63cd29e8}{%
+           family={Castillo},
+           familyi={C\bibinitperiod},
+           given={Dylan},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Kaggle}%
+      }
+      \strng{namehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{fullhash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{bibnamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{authorbibnamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{authornamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{authorfullhash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{title}{7k Books with Metadata}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
+      \endverb
+      \verb{url}
+      \verb https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
+      \endverb
+    \endentry
+    \entry{bart-large-mnli}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=44ed07e3df26553e204294cd4213762f}{%
+           family={{Facebook AI}},
+           familyi={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{44ed07e3df26553e204294cd4213762f}
+      \strng{fullhash}{44ed07e3df26553e204294cd4213762f}
+      \strng{bibnamehash}{44ed07e3df26553e204294cd4213762f}
+      \strng{authorbibnamehash}{44ed07e3df26553e204294cd4213762f}
+      \strng{authornamehash}{44ed07e3df26553e204294cd4213762f}
+      \strng{authorfullhash}{44ed07e3df26553e204294cd4213762f}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{facebook/bart-large-mnli}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://huggingface.co/facebook/bart-large-mnli
+      \endverb
+      \verb{url}
+      \verb https://huggingface.co/facebook/bart-large-mnli
+      \endverb
+    \endentry
     \entry{handson-ml}{book}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=fb48b65407d03cee0c164d17c1ea7eac}{%
@@ -56,8 +158,142 @@
       \verb https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/
       \endverb
     \endentry
+    \entry{sentence-transformers}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=e0b6bb846c6a3e0649ce0e3cd9355df3}{%
+           family={{Hugging Face}},
+           familyi={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{e0b6bb846c6a3e0649ce0e3cd9355df3}
+      \strng{fullhash}{e0b6bb846c6a3e0649ce0e3cd9355df3}
+      \strng{bibnamehash}{e0b6bb846c6a3e0649ce0e3cd9355df3}
+      \strng{authorbibnamehash}{e0b6bb846c6a3e0649ce0e3cd9355df3}
+      \strng{authornamehash}{e0b6bb846c6a3e0649ce0e3cd9355df3}
+      \strng{authorfullhash}{e0b6bb846c6a3e0649ce0e3cd9355df3}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{sentence-transformers/all-MiniLM-L6-v2}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+      \endverb
+      \verb{url}
+      \verb https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+      \endverb
+    \endentry
   \enddatalist
   \datalist[entry]{apa/global//global/global}
+    \entry{faiss}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=05ee48ba5bc1070bdbf19ed26a310171}{%
+           family={AI},
+           familyi={A\bibinitperiod},
+           given={Meta},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{05ee48ba5bc1070bdbf19ed26a310171}
+      \strng{fullhash}{05ee48ba5bc1070bdbf19ed26a310171}
+      \strng{bibnamehash}{05ee48ba5bc1070bdbf19ed26a310171}
+      \strng{authorbibnamehash}{05ee48ba5bc1070bdbf19ed26a310171}
+      \strng{authornamehash}{05ee48ba5bc1070bdbf19ed26a310171}
+      \strng{authorfullhash}{05ee48ba5bc1070bdbf19ed26a310171}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{FAISS Facebook AI Similarity Search}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://faiss.ai/
+      \endverb
+      \verb{url}
+      \verb https://faiss.ai/
+      \endverb
+    \endentry
+    \entry{7k-books}{dataset}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=aa72f98d31bf8f1ee763f0bf63cd29e8}{%
+           family={Castillo},
+           familyi={C\bibinitperiod},
+           given={Dylan},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Kaggle}%
+      }
+      \strng{namehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{fullhash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{bibnamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{authorbibnamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{authornamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \strng{authorfullhash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{title}{7k Books with Metadata}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
+      \endverb
+      \verb{url}
+      \verb https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
+      \endverb
+    \endentry
+    \entry{bart-large-mnli}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=44ed07e3df26553e204294cd4213762f}{%
+           family={{Facebook AI}},
+           familyi={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{44ed07e3df26553e204294cd4213762f}
+      \strng{fullhash}{44ed07e3df26553e204294cd4213762f}
+      \strng{bibnamehash}{44ed07e3df26553e204294cd4213762f}
+      \strng{authorbibnamehash}{44ed07e3df26553e204294cd4213762f}
+      \strng{authornamehash}{44ed07e3df26553e204294cd4213762f}
+      \strng{authorfullhash}{44ed07e3df26553e204294cd4213762f}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{facebook/bart-large-mnli}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://huggingface.co/facebook/bart-large-mnli
+      \endverb
+      \verb{url}
+      \verb https://huggingface.co/facebook/bart-large-mnli
+      \endverb
+    \endentry
     \entry{handson-ml}{book}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=fb48b65407d03cee0c164d17c1ea7eac}{%
@@ -93,6 +329,38 @@
       \endverb
       \verb{url}
       \verb https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/
+      \endverb
+    \endentry
+    \entry{sentence-transformers}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=e0b6bb846c6a3e0649ce0e3cd9355df3}{%
+           family={{Hugging Face}},
+           familyi={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{e0b6bb846c6a3e0649ce0e3cd9355df3}
+      \strng{fullhash}{e0b6bb846c6a3e0649ce0e3cd9355df3}
+      \strng{bibnamehash}{e0b6bb846c6a3e0649ce0e3cd9355df3}
+      \strng{authorbibnamehash}{e0b6bb846c6a3e0649ce0e3cd9355df3}
+      \strng{authornamehash}{e0b6bb846c6a3e0649ce0e3cd9355df3}
+      \strng{authorfullhash}{e0b6bb846c6a3e0649ce0e3cd9355df3}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{sentence-transformers/all-MiniLM-L6-v2}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+      \endverb
+      \verb{url}
+      \verb https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
       \endverb
     \endentry
   \enddatalist

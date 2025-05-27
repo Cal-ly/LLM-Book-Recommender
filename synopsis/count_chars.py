@@ -29,6 +29,9 @@ def strip_latex_commands(text):
     # Remove TikZ environments entirely
     text = re.sub(r'\\begin\{tikzpicture}.*?\\end\{tikzpicture\}', '', text, flags=re.DOTALL)
 
+    #remove figures and tables
+    text = re.sub(r'\\begin\{figure\}.*?\\end\{figure\}', '', text, flags=re.DOTALL)
+
     # Keep footnote text
     text = re.sub(r'\\footnote\{([^}]*)\}', r' \1 ', text)
 
