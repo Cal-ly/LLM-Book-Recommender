@@ -54,41 +54,6 @@
       \verb https://faiss.ai/
       \endverb
     \endentry
-    \entry{7k-books}{dataset}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=aa72f98d31bf8f1ee763f0bf63cd29e8}{%
-           family={Castillo},
-           familyi={C\bibinitperiod},
-           given={Dylan},
-           giveni={D\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {Kaggle}%
-      }
-      \strng{namehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
-      \strng{fullhash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
-      \strng{bibnamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
-      \strng{authorbibnamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
-      \strng{authornamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
-      \strng{authorfullhash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
-      \field{sortinit}{C}
-      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{month}{5}
-      \field{title}{7k Books with Metadata}
-      \field{year}{2025}
-      \verb{urlraw}
-      \verb https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
-      \endverb
-      \verb{url}
-      \verb https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
-      \endverb
-    \endentry
     \entry{bart-large-mnli}{online}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=44ed07e3df26553e204294cd4213762f}{%
@@ -225,41 +190,6 @@
       \endverb
       \verb{url}
       \verb https://faiss.ai/
-      \endverb
-    \endentry
-    \entry{7k-books}{dataset}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=aa72f98d31bf8f1ee763f0bf63cd29e8}{%
-           family={Castillo},
-           familyi={C\bibinitperiod},
-           given={Dylan},
-           giveni={D\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {Kaggle}%
-      }
-      \strng{namehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
-      \strng{fullhash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
-      \strng{bibnamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
-      \strng{authorbibnamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
-      \strng{authornamehash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
-      \strng{authorfullhash}{aa72f98d31bf8f1ee763f0bf63cd29e8}
-      \field{sortinit}{C}
-      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{month}{5}
-      \field{title}{7k Books with Metadata}
-      \field{year}{2025}
-      \verb{urlraw}
-      \verb https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
-      \endverb
-      \verb{url}
-      \verb https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
       \endverb
     \endentry
     \entry{bart-large-mnli}{online}{}

@@ -1,7 +1,8 @@
 \chapter{Methodology and Structure}
 \label{chapter:methodology}
 
-This project follows a research-driven prototype methodology aimed at exploring the feasibility of using local language models for semantic book recommendations. The goal is not to build a commercial product, but to test how well local ML tools can perform end-to-end recommendation without internet access.
+This project uses a research-driven prototype methodology to evaluate the feasibility of deploying semantic book recommendation systems powered entirely by locally running machine learning models. 
+Rather than building a commercial product, the objective was to explore performance, usability, and effectiveness under offline constraints.
 
 \section{Research Approach}
 \label{sec:research-approach}
@@ -9,20 +10,20 @@ This project follows a research-driven prototype methodology aimed at exploring 
 The methodology combines literature review, modular implementation, and empirical testing. Each decision supports the research question and sub-questions (see Section~\ref{sec:problem-definition}).
 
 \begin{itemize}
-    \item \textbf{Literature Review:} Key areas included sentence embeddings, content-based recommenders, zero-shot classification, and privacy-aware ML. Emphasis was placed on open-source tools and local-first design \cite{handson-ml}.
-    
-    \item \textbf{Implementation:}
+    \item \textbf{Literature Review:} Focused on content-based recommender systems, sentence embeddings, zero-shot classification, and design principles \cite{handson-ml}.
+
+    \item \textbf{Implementation Tools:}
     \begin{itemize}
-        \item \texttt{Python} + \texttt{pandas} for scripting and orchestration.
-        \item \texttt{sentence-transformers} (\texttt{MiniLM-L6-v2}) for text embeddings.
-        \item \texttt{facebook/bart-large-mnli} for zero-shot category inference.
-        \item \texttt{FAISS} for semantic vector indexing.
-        \item \texttt{Streamlit} for an interactive frontend.
+        \item \texttt{Python} with \texttt{pandas} for data pipelines.
+        \item \texttt{sentence-transformers} (MiniLM-L6-v2) for generating semantic embeddings.
+        \item \texttt{facebook/bart-large-mnli} for zero-shot classification of genres.
+        \item \texttt{FAISS} for efficient vector indexing and retrieval.
+        \item \texttt{Streamlit} for a local-first UI interface.
     \end{itemize}
 
-    \item \textbf{Data Processing:} Categories were refined using confidence scores, fallbacks, and correlation-based filtering.
-    
-    \item \textbf{Testing:} A variety of query types were tested with and without filters to evaluate relevance and robustness.
+    \item \textbf{Data Preparation:} Metadata was enriched and filtered using hybrid classification with confidence thresholds and fallback logic.
+
+    \item \textbf{Empirical Testing:} Semantic quality and responsiveness were evaluated via real-world queries and edge-case prompts.
 \end{itemize}
 
 \section{Evaluation Criteria}
@@ -43,15 +44,15 @@ These metrics align with sub-questions~\ref{itm:subq-embedding}, \ref{itm:subq-s
 \label{sec:structure-synopsis}
 
 \subsection{Main Chapters}
-The main chapters cover the core components of the system, with each addressing a specific aspect of the methodology.
+Each core system component is described in its own chapter, addressing one or more of the research sub-questions.
 
 \subsection{Appendices}
-Supporting materials include example code, glossary terms, and supporting formulas.
+Supporting materials include example code, glossary terms, and diagrams that expand on key technical concepts.
 
 \section{Application Architecture}
 \label{sec:application-architecture}
 
-The overall system is modular and layered:
+The overall system is modular and fully local:
 
 \begin{tikzpicture}[node distance=1.5cm]
     \node (desc) [block] {Input: Book Metadata};

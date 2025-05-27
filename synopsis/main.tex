@@ -6,7 +6,7 @@
 
 %% Set up the bibliography
 \usepackage[backend=biber, style=apa]{biblatex}
-\addbibresource{synopsis.bib}
+\addbibresource{main.bib}
 
 %% Additional packages and commands
 \usepackage{parskip}
@@ -68,7 +68,6 @@
 \mainmatter
 
 \input{main/1introduction}
-
 \input{main/2methodology}
 \input{main/3dataset}
 \input{main/4category-inference}
@@ -93,15 +92,16 @@
 \appendix
 
 % Glossaries
-\include{appendix/appendix-symbols}
-\include{appendix/appendix-glossary}
+\include{appendix/a-symbols}
+\include{appendix/b-glossary}
+\include{appendix/c-figures}
 
 % Theoretical Appendices
-\include{appendix/appendix-sentence-embeddings}
-\include{appendix/appendix-zero-shot}
-\include{appendix/appendix-faiss}
-\include{appendix/appendix-confidence-filtering}
-\include{appendix/appendix-keyword-fallback}
-\include{appendix/appendix-semantic-vs-keyword}
+\include{appendix/sentence-embeddings}
+\include{appendix/zero-shot}
+\include{appendix/faiss}
+\include{appendix/confidence-filtering}
+\include{appendix/keyword-fallback}
+\include{appendix/semantic-vs-keyword}
 
 \end{document}

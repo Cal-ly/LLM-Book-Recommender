@@ -1,98 +1,48 @@
 \chapter{Dataset Exploration}
 \label{chapter:dataset}
 
-The project began with a public dataset containing metadata for over 6,800 books \cite{7k-books}. Preprocessing was necessary to enrich and validate descriptions, authorship, ratings, and structure for use in downstream models.
-
-All transformations were performed using \texttt{pandas}, \texttt{numpy}, and visualization libraries. The pipeline was scripted in modular stages.
+The project began with the public dataset by Castillo (2025), containing metadata for over 6,800 books. Initial inspection revealed missing or inconsistent fields such as authorship, categories, and descriptions. A modular preprocessing pipeline was built to clean, augment, and prepare the data for semantic modeling.
 
 \section{Dataset Overview}
-\label{sec:dataset-overview}
-
-The original dataset (\texttt{books.csv}) included fields such as \texttt{isbn13}, \texttt{title}, \texttt{subtitle}, \texttt{authors}, \texttt{categories}, \texttt{description}, \texttt{published\_year}, and \texttt{average\_rating}.
-
-Exploration focused on fields relevant to semantic search and UI rendering:
-
+The original dataset (\texttt{books.csv}) included fields such as:
 \begin{itemize}
-    \item \texttt{full\_title} (from title + subtitle)
-    \item \texttt{authors}
-    \item \texttt{description}
-    \item \texttt{average\_rating}, \texttt{published\_year}, \texttt{num\_pages}
+\item \verb|isbn13|, \verb|title|, \verb|subtitle|, \verb|authors|
+\item \verb|categories|, \verb|description|, \verb|published_year|
+\item \verb|average_rating|, \verb|num_pages|
 \end{itemize}
+Key fields were combined and engineered into a unified \verb|full_title|, and several boolean \verb|has_*| flags were created for inspection and filtering.
 
 \section{Data Cleaning and Augmentation}
-\label{sec:data-cleaning}
-
-The cleaning process included:
-
+Cleaning and augmentation were performed in multiple stages:
 \begin{enumerate}
-    \item Merging title and subtitle into \texttt{full\_title}
-    \item Adding binary flags (e.g., \texttt{has\_description}, \texttt{has\_thumbnail})
-    \item Enriching missing values from OpenLibrary (authors, years, thumbnails)
-    \item Filling description gaps using the Google Books API (limited to 1,000 queries/day)
-    \item Combining \texttt{subjects} and \texttt{categories} as input for classification
+\item \textbf{Initial Checks:} Detected and logged missing or invalid entries.
+\item \textbf{OpenLibrary Augmentation:} Filled in missing values such as \texttt{authors}, \texttt{num\_pages}, and \texttt{thumbnail}. Introduced \texttt{subjects}.
+\item \textbf{Google Books API:} Prioritized short or missing descriptions and added alternate fields (e.g., \texttt{description\_google}).
+\item \textbf{Field Comparison:} Logged mismatches in fields like title and author between sources. Created \texttt{alt\_*} fields where minor but significant discrepancies were found.
+\item \textbf{Final Merging:} Consolidated \texttt{categories}, \texttt{subjects}, and \texttt{categories\_google} into a cleaned \texttt{final\_categories} field.
 \end{enumerate}
-
-Each stage included logging and result snapshots.
+Records with less than 9 words in the final description were removed, reducing the dataset from 6,810 to 6,572 entries.
 
 \section{Feature Engineering}
-\label{sec:feature-engineering}
-
-Several derived features supported later filtering:
-
+New fields were engineered to support classification and filtering:
 \begin{itemize}
-    \item \texttt{words\_in\_description} — Token count of final description
-    \item \texttt{description\_length} — Character length of \texttt{augmented\_description}
-    \item \texttt{has\_*} — Flags indicating field completeness
+\item \verb|words_in_description| \textemdash{} token count of description
+\item \verb|description_length| \textemdash{} character count of enriched description
+\item \verb|has_*| flags \textemdash{} completeness indicators for filtering
 \end{itemize}
-
-These helped determine which rows were usable for classification and embedding.
+These were used both for data readiness assessments and visualization.
 
 \section{Exploratory Analysis}
-\label{sec:data-exploration}
-
-Key visualizations were used to inform pipeline thresholds:
-
+Visual and statistical analysis was used to inform thresholds and highlight data issues:
 \begin{itemize}
-    \item \textbf{Correlation heatmap:} Page count, rating, and age
-    \item \textbf{Rating distribution:} Helped define UI filters
-    \item \textbf{Publication histogram:} Confirmed skew toward post-2000 content
-    \item \textbf{Top authors chart:} Most represented contributors
+\item \textbf{Missing Values:} \verb|openlib_values_heatmap.png|
+\item \textbf{Rating Distribution:} \verb|rating_distribution.png|
+\item \textbf{Publication Year:} \verb|publication_year_distribution.png|
+\item \textbf{Category Frequency:} \verb|top_categories.png|
+\item \textbf{Short Descriptions:} \verb|less_than_50_words_description.png|
+\item \textbf{Metadata Conflicts:} \verb|reexp_mismatch_counts.png|
 \end{itemize}
-
-\subsection{Correlation Heatmap}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/correlation_heatmap.png}
-    \caption{Spearman Correlation Heatmap}
-    \label{fig:correlation-heatmap}
-\end{figure}
-
-\subsection{Rating Distribution}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/average_rating_distribution.png}
-    \caption{Average Rating Distribution}
-    \label{fig:rating-distribution}
-\end{figure}
-
-\subsection{Publication Year Distribution}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/publication_year_distribution.png}
-    \caption{Publication Year Distribution}
-    \label{fig:pubyear-distribution}
-\end{figure}
-
-\subsection{Top Authors}
-\label{sec:top-authors}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/top_authors.png}
-    \caption{Top 20 Authors by Number of Books}
-    \label{fig:top-authors}
-\end{figure}
+These figures helped guide filtering strategies and offered insight into metadata quality.
 
 \section{Outcome}
-\label{sec:exploration-outcome}
-
-Following augmentation and validation, 6,572 rows were retained. After category classification and filtering (Chapter~\ref{chapter:category-inference}), the dataset was narrowed to 5,160 well-labeled entries for embedding and indexing.
+After augmentation and filtering, 6,572 books remained. These were passed to the category inference pipeline (Chapter~\ref{chapter:category-inference}), where further refinement reduced the set to 5,160 high-confidence entries suitable for semantic embedding and indexing.
