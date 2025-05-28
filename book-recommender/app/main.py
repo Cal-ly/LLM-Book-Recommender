@@ -1,131 +1,102 @@
-import streamlit as st
+import os
+import sys
+import faiss
 import pandas as pd
 import numpy as np
-import faiss
+import streamlit as st
 from sentence_transformers import SentenceTransformer
-import os
-import datetime
-import logging
-import requests
+import time
 
-# NOTE: PyTorch may trigger harmless RuntimeErrors with Streamlit's file watcher.
-# Safe to ignore unless app functionality breaks. in .streamlit/config.toml, set:
-# [server]
-# file_watcher_type = "none"
-# This is included in the repo for convenience, but you can also set it manually.
+# Setup paths
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+SCRIPT_DIR = APP_DIR  # Since this file is in 'app', SCRIPT_DIR is the same as APP_DIR
+REPO_ROOT = os.path.abspath(os.path.join(APP_DIR, ".."))
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
+
+from app.classes.main_helper import MainHelper
 
 # Paths
-BASE_DIR = os.path.dirname(__file__)
-EMBEDDING_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "embeddings"))
-MODEL_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "models"))
-AUX_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "auxiliary"))
-LOGS_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "logs"))
-os.makedirs(LOGS_DIR, exist_ok=True)
-LOG_FILE = os.path.join(LOGS_DIR, f"main-{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.log")
+LOG_NAME = "streamlit_main"
+helper = MainHelper(REPO_ROOT, LOG_NAME)
+EMBEDDING_DIR = helper.get_path("embeddings")
+DATA_DIR = helper.get_path("data")
 MODEL_NAME = "all-MiniLM-L6-v2"
+CSV_FILE = os.path.join(DATA_DIR, "books_ui.csv")
+INDEX_FILE = os.path.join(EMBEDDING_DIR, "index.faiss")
+DEFAULT_COVER = os.path.join("figures", "0-cover-not-found.jpg")
 
-# Setup logging
-logging.basicConfig(filename=LOG_FILE, level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-logger = logging.getLogger(__name__)
-
-# Load model
+# Load model and data
 @st.cache_resource
 def load_model():
     return SentenceTransformer(MODEL_NAME)
 
-# Load FAISS index
-@st.cache_resource
-def load_faiss_index():
-    index_path = os.path.join(EMBEDDING_DIR, "index.faiss")
-    return faiss.read_index(index_path)
-
-# Load book metadata
 @st.cache_data
 def load_books():
-    metadata_path = os.path.join(EMBEDDING_DIR, "books_indexed.csv")
-    return pd.read_csv(metadata_path)
+    df = pd.read_csv(CSV_FILE)
+    index = faiss.read_index(INDEX_FILE)
+    return df, index
 
-# App layout
-st.set_page_config(page_title="Local Book Recommender", page_icon="📚", layout="wide")
-st.title("Local Book Recommender")
+# Streamlit UI
+st.set_page_config(page_title="Book Recommender", page_icon="📚", layout="wide")
+st.title("Semantic Book Recommender")
 st.markdown("Search for books using a short description, idea, or theme. All processing is local.")
-
-# Cover image fallback
-fallback_path = os.path.join(AUX_DIR, "cover-not-found.jpg")
-if not os.path.exists(fallback_path):
-    st.error("Cover image not found. Please check the auxiliary directory.")
-    logger.error("Cover image not found at path: %s", fallback_path)
-    st.stop()
-
-# User inputs
 query = st.text_input("Enter your book query:", placeholder="e.g., A dystopian society controlled by AI")
-min_rating = st.slider("Minimum average rating:", min_value=0.0, max_value=5.0, value=3.0, step=0.1)
-genre_filter = st.text_input("Filter by genre/category (optional):", placeholder="e.g., Fiction")
-sort_order = st.radio("Sort by average rating:", ["High to Low", "Low to High"])
 
+model = load_model()
+df, index = load_books()
+
+# Category filter and sorting
+all_tags = sorted({tag for sublist in df['refined_categories'].apply(eval) for tag in sublist})
+selected_tags = st.multiselect("Filter by genre/tag:", options=all_tags)
+sort_order = st.radio("Sort by rating:", options=["High to low", "Low to high"], horizontal=True)
+
+# Perform search
 if query:
-    with st.spinner("Finding recommendations..."):
-        model = load_model()
-        index = load_faiss_index()
-        books = load_books()
+    helper.logger.info(f"User query: {query}")  # Log the entered query
 
-        # Embed query
-        query_embedding = model.encode([query], convert_to_numpy=True)
-        D, I = index.search(query_embedding, k=50)
+    start_embed = time.time()
+    query_vector = model.encode([query])
+    embed_time = time.time() - start_embed
+    helper.logger.info(f"Embedding time: {embed_time:.3f} seconds")  # Log embedding time
 
-        st.subheader("🔍 Recommendations")
+    start_search = time.time()
+    D, I = index.search(query_vector, 60)  # Search up to 60 results
+    results = [df.iloc[idx] for idx in I[0]]
+    search_time = time.time() - start_search
+    helper.logger.info(f"Search time: {search_time:.3f} seconds")  # Log search time
 
-        def get_cover_url(isbn):
-            if pd.isna(isbn) or str(isbn).lower() == "nan":
-                return None
-            return f"https://covers.openlibrary.org/b/isbn/{isbn}-M.jpg"
+    # Apply tag filtering
+    if selected_tags:
+        results = [book for book in results if any(tag in eval(book['refined_categories']) for tag in selected_tags)]
 
-        results = []
-        for idx in I[0]:
-            if idx >= len(books):
-                continue
-            book = books.iloc[idx]
-            if book['average_rating'] < min_rating:
-                continue
-            if genre_filter and genre_filter.lower() not in str(book.get("categories", "")).lower():
-                continue
-            results.append(book)
+    # Sort by average_rating
+    results.sort(key=lambda x: x['average_rating'], reverse=(sort_order == "High to low"))
 
-        if sort_order == "High to Low":
-            results.sort(key=lambda b: b["average_rating"], reverse=True)
-        else:
-            results.sort(key=lambda b: b["average_rating"], reverse=False)
+    # Pagination setup
+    items_per_page = 6
+    total_pages = (len(results) - 1) // items_per_page + 1
+    page = st.number_input("Page", min_value=1, max_value=total_pages, value=1)
+    start_idx = (page - 1) * items_per_page
+    end_idx = start_idx + items_per_page
+    display_results = results[start_idx:end_idx]
 
-        # Pagination setup
-        per_page = 6
-        total_results = len(results)
-        total_pages = (total_results + per_page - 1) // per_page
+    st.markdown("### Results")
+    cols = st.columns(2)
 
-        if total_results == 0:
-            st.info("No matching books found.")
-        else:
-            st.markdown(f"**{total_results} results found. Showing {per_page} per page. Total pages: {total_pages}.**")
-            page = st.number_input("Page", min_value=1, max_value=max(total_pages, 1), step=1)
-            start_idx = (page - 1) * per_page
-            end_idx = start_idx + per_page
+    for i, book in enumerate(display_results):
+        with cols[i % 2]:
+            with st.container():
+                # Lazy load external image with fallback to local
+                if pd.notna(book["thumbnail"]) and book["thumbnail"].startswith("http"):
+                    st.image(book["thumbnail"], width=150)
+                else:
+                    st.image(DEFAULT_COVER, width=150)
 
-            paginated_results = results[start_idx:end_idx]
-            cols = st.columns(2)
-
-            for i, book in enumerate(paginated_results):
-                with cols[i % 2]:
-                    cover_url = get_cover_url(book.get('isbn13'))
-                    if cover_url is None:
-                        cover_url = fallback_path
-                    else:
-                        try:
-                            response = requests.get(cover_url, timeout=2)
-                            if response.status_code != 200:
-                                cover_url = fallback_path
-                        except requests.RequestException:
-                            cover_url = fallback_path
-                    st.image(cover_url, width=120)
-                    st.markdown(f"**{book['title']}** by *{book['authors']}*")
-                    st.markdown(f"⭐ Rating: {book['average_rating']}")
-                    st.markdown(f"> {book['description'][:500]}...")
-                    st.markdown("---")
+                st.subheader(book["full_title"])
+                st.markdown(f"**Author:** {book['authors']}")
+                st.markdown(f"**Published:** {book['published_year']}")
+                st.markdown(f"**Rating:** {book['average_rating']:.1f} ⭐")
+                st.markdown(f"**Pages:** {int(book['num_pages']) if pd.notna(book['num_pages']) else '?'}")
+                st.markdown(f"**Tags:** {', '.join(eval(book['refined_categories']))}")
+                st.write(book["description"][:250] + ("..." if len(book["description"]) > 250 else ""))
