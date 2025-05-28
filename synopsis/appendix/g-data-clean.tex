@@ -1,0 +1,78 @@
+\chapter{Data Cleaning and Augmentation}
+\label{appendix:data-cleaning}
+
+This appendix explores the techniques used for cleaning and augmenting book metadata, which was essential for building a semantically rich, searchable dataset. It addresses how inconsistencies, missing values, and weak textual descriptions were handled to support effective downstream ML tasks.
+
+\section{Why Data Quality Matters}
+In embedding-based systems, input quality directly affects output relevance. Ambiguous or sparse descriptions produce poor embeddings, reducing semantic precision. Similarly, inconsistent or missing metadata can weaken classification and filtering performance.
+
+\section{Cleaning Pipeline Overview}
+The dataset originally included over 7,000 book records, aggregated from various sources with variable completeness. The following steps were applied:
+
+\begin{enumerate}
+    \item Dropped entries missing title or description
+    \item Removed duplicates and outliers (e.g., unusually long texts)
+    \item Normalized text casing and whitespace
+    \item Replaced null fields with placeholders or estimations
+    \item Removed boilerplate text (e.g., “No description available”)
+\end{enumerate}
+
+\subsection*{Cleaning Heuristics}
+These heuristics were used to streamline cleaning:
+\begin{itemize}
+    \item Length thresholds (e.g., min 100 characters for description)
+    \item Filtering based on punctuation density (flagging auto-generated entries)
+    \item Removing descriptions composed entirely of keywords or tags
+\end{itemize}
+
+\section{Data Augmentation}
+To improve the semantic richness of inputs, the following augmentation methods were used:
+
+\subsection*{(1) Composite Description Field}
+A new field \texttt{search\_text} was created by merging:
+
+\begin{verbatim}
+Title: {title}. Author: {authors}. Description: {description}
+\end{verbatim}
+
+This gave more context to the embedding model, emphasizing title and author relevance.
+
+\subsection*{(2) External Source Integration}
+Descriptions were extended where possible using public APIs:
+
+\begin{itemize}
+    \item Open Library API
+    \item Google Books API
+\end{itemize}
+
+If a book had a matching identifier (e.g., ISBN), missing fields like description, page count, or rating were filled in.
+
+\subsection*{(3) Metadata Derivation}
+Additional fields were derived:
+\begin{itemize}
+    \item \textbf{Book age:} computed from publication year
+    \item \textbf{Page count bins:} converted to categorical buckets
+    \item \textbf{Rating level:} numerical rating mapped to qualitative tiers
+\end{itemize}
+
+\section{Correlation Checks}
+Correlation analysis between description length and classification confidence was conducted to justify filtering. Spearman’s \( \rho \) and Pearson’s \( r \) were computed and visualized to support design decisions (see Appendix~\ref{appendix:figures}).
+
+\section{Fallback Design Philosophy}
+Where automatic tools failed (e.g., ZSC output too sparse), manual logic was introduced:
+\begin{itemize}
+    \item Keyword-based genre tagging (e.g., “spaceship” → Sci-Fi)
+    \item Heuristic label propagation within author clusters
+\end{itemize}
+
+This hybrid design emphasizes robustness over purity — especially valuable for offline and low-resource contexts.
+
+\section{Limitations and Trade-offs}
+\begin{itemize}
+    \item Augmentation may introduce minor inconsistencies (e.g., mismatched genres across sources)
+    \item Some fields were inferred from partial matches and are best-effort estimates
+    \item Reliance on third-party APIs, while limited, introduces variation in format and tone
+\end{itemize}
+
+\section{Conclusion}
+Data preparation is foundational to the success of semantic systems. The cleaning and augmentation pipeline ensured that even lightweight models received rich, structured inputs — enabling effective classification and retrieval downstream.

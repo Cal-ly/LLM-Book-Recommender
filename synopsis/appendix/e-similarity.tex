@@ -1,0 +1,82 @@
+\chapter{Vector Similarity and Search}
+\label{appendix:similarity-theory}
+
+This appendix elaborates on the mathematical foundations and implementation considerations behind vector similarity search — the mechanism used to match queries and books in semantic space.
+
+\section{Motivation}
+Traditional search engines rely on exact term overlap. However, semantically similar phrases often differ lexically:
+
+\begin{quote}
+\textit{``Books about exploring loneliness in space''} vs. \textit{``Isolation in science fiction''}
+\end{quote}
+
+Embedding-based systems overcome this limitation by projecting both queries and documents into a shared vector space. The task then becomes: \textit{find the vectors nearest to a query vector}.
+
+\section{Mathematical Background}
+Let \( \vec{q} \in \mathbb{R}^d \) represent a query embedding, and let \( \{ \vec{b}_1, \vec{b}_2, \dots, \vec{b}_n \} \subset \mathbb{R}^d \) be the embeddings of all books.
+
+The most similar books are found by minimizing the distance function:
+\[
+\text{dist}(\vec{q}, \vec{b}_i) = \|\vec{q} - \vec{b}_i\|_2^2
+\]
+
+Alternatively, cosine similarity can be used:
+\[
+\cos(\theta) = \frac{\vec{q} \cdot \vec{b}_i}{\|\vec{q}\| \|\vec{b}_i\|}
+\]
+
+In this system, squared Euclidean (L2) distance is used to match the FAISS index type.
+
+\section{Geometric Intuition}
+In geometric terms, the embedding space is like a multi-dimensional landscape. Each book occupies a fixed location. A query becomes a “probe,” and similarity search identifies the closest “peaks.”
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.2]
+    % Axes
+    \draw[->] (-2, 0) -- (4, 0) node[right] {\( x_1 \)};
+    \draw[->] (0, -1.5) -- (0, 3) node[above] {\( x_2 \)};
+    
+    % Query vector
+    \draw[->, thick, red] (0, 0) -- (1.2, 1.8) node[above right] {\( \vec{q} \)};
+    
+    % Book vectors
+    \draw[->, thick, blue] (0, 0) -- (2, 2.1) node[above] {\( \vec{b}_1 \)};
+    \draw[->, thick, blue] (0, 0) -- (1.5, 1.2) node[below right] {\( \vec{b}_2 \)};
+    \draw[->, thick, blue] (0, 0) -- (3, -0.5) node[below] {\( \vec{b}_3 \)};
+    
+    % Arc showing angle
+    \draw[dashed] (0.9, 1.35) arc[start angle=56, end angle=75, radius=1cm];
+    \node at (1.15, 1.1) {\( \theta \)};
+\end{tikzpicture}
+\caption{Visualizing semantic proximity between query and book vectors}
+\end{figure}
+
+The smaller the angle or distance, the more semantically relevant the book is.
+
+\section{Indexing with FAISS}
+FAISS~\parencite{johnson2019billion} is an open-source library from Facebook AI that enables efficient similarity search over high-dimensional vectors.
+
+This project uses:
+- \texttt{IndexFlatL2} — brute-force, exact L2 search
+- CPU-only backend for offline execution
+- Sub-second retrieval of top-\( k \) results from over 5,000 book vectors
+
+For large datasets, approximate indices (e.g., HNSW, IVF) can be substituted for faster but slightly less precise searches.
+
+\section{Advantages of Vector Search}
+\begin{itemize}
+    \item \textbf{Language-aware:} Finds relevant matches even with low lexical overlap
+    \item \textbf{Scalable:} Compatible with millions of documents with indexing
+    \item \textbf{Offline-capable:} Entire process runs locally without cloud dependencies
+\end{itemize}
+
+\section{Limitations}
+\begin{itemize}
+    \item \textbf{Semantic ambiguity:} Vector proximity does not guarantee relevance in all cases
+    \item \textbf{Cold start:} Requires embeddings for all documents up front
+    \item \textbf{Interpretability:} Search decisions are hard to explain due to vector abstraction
+\end{itemize}
+
+\section{Conclusion}
+Vector similarity search replaces keyword matching with a geometric proximity task in semantic space. Combined with embedding models, this enables robust content-based recommendations even in resource-constrained, offline environments.
