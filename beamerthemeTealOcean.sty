@@ -1,0 +1,84 @@
+\ProvidesPackage{beamerthemeTealOcean}
+
+% Load required beamer packages
+\mode<presentation>
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usepackage{pgfpages}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{ifxetex, ifluatex}
+\usepackage{fontspec}
+
+% Color definitions from the custom oceanic palette
+\definecolor{base0}{HTML}{DAE4E5}
+\definecolor{base1}{HTML}{94C0C2}
+\definecolor{accent1}{HTML}{69A4A2}
+\definecolor{accent2}{HTML}{296E6B}
+\definecolor{accent3}{HTML}{2B4A4A}
+
+% General Beamer color settings
+\setbeamercolor{normal text}{fg=black, bg=base0}
+\setbeamercolor{structure}{fg=accent2}
+\setbeamercolor{alerted text}{fg=accent2}
+\setbeamercolor{example text}{fg=accent3}
+\setbeamercolor{titlelike}{fg=white,bg=accent3}
+
+% Frametitle bar
+\setbeamercolor{frametitle}{fg=white,bg=accent2}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% Title page elements
+\setbeamercolor{title}{fg=white, bg=accent3}
+\setbeamercolor{subtitle}{fg=base0}
+\setbeamercolor{author}{fg=base1}
+\setbeamercolor{institute}{fg=base1}
+\setbeamercolor{date}{fg=base1}
+
+% Block environments
+\setbeamercolor{block title}{bg=accent1, fg=white}
+\setbeamercolor{block body}{bg=base0, fg=black}
+
+\setbeamercolor{block title alerted}{use=alerted text, bg=accent2, fg=white}
+\setbeamercolor{block body alerted}{use=alerted text, bg=base0, fg=black}
+
+\setbeamercolor{block title example}{bg=accent3, fg=white}
+\setbeamercolor{block body example}{bg=base0, fg=black}
+
+% Navigation symbols off
+\setbeamertemplate{navigation symbols}{}
+
+% Custom fonts (fallback to sans-serif)
+\ifxetex
+  \setmainfont{Inter}
+\else
+  \usefonttheme{professionalfonts}
+\fi
+
+% Final title slide setup
+\setbeamertemplate{title page}
+{
+  \vbox{}
+  \vfill
+  \begin{centering}
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.5em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=4pt,center]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=2pt,center]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=2pt,center]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}
+  \end{centering}
+  \vfill
+}
