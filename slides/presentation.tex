@@ -1,5 +1,10 @@
-\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
 \usepackage{beamerthemeTealOceanPdflatex} % Custom theme with oceanic colors
+
+\usepackage{tikz}
+\usetikzlibrary{angles, quotes, shapes.geometric, arrows.meta, positioning}
+\tikzstyle{block} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=blue!10]
+\tikzstyle{arrow} = [thick, ->, >=Stealth]
 
 \title{Book Recommender using NLP}
 \author{Carsten Lydeking}
@@ -14,8 +19,21 @@
   \titlepage
 \end{frame}
 
-\input{01_introduction}
-\input{02_methodology}
-\input{03_architecture}
+\input{01_motivation_problem}
+\input{02_architecture}
+\input{03_dataset_exploration}
+\input{04_category_inference}
+\input{05_sentence_embedding}
+\input{06_faiss_similarity_search}
+\input{07_ui_privacy}
+\input{08_reflections}
+\input{09_conclusion}
+
+% Optional backup slides:
+\input{10_backup_metrics}
+\input{11_backup_fallback_keywords}
+\input{12_backup_performance}
+
+
 
 \end{document}

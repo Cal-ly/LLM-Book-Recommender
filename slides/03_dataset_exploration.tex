@@ -1,0 +1,22 @@
+\begin{frame}{Dataset Exploration}
+  
+\begin{columns}[T]
+  \centering
+  \begin{column}{0.49\textwidth}
+    Original dataset $\sim$ 6800 books
+    \begin{itemize}
+          \item Missing or inconsistent fields (authors, categories, descriptions)
+          \item Very short or low-quality descriptions
+          \item Category noise across sources
+          \item OpenLibrary and Google Books API used to enrich metadata
+          \item Rows with $<9$ words in description removed
+          \item Final dataset: 5160 high-confidence books
+        \end{itemize}
+  \end{column}
+
+  \begin{column}{0.49\textwidth}
+  \centering
+      \includegraphics[width=\textwidth]{reexp_mismatch_counts.png}
+  \end{column}
+\end{columns}
+\end{frame}

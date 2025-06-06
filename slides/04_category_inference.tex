@@ -1,0 +1,33 @@
+\begin{frame}{Category Inference}
+
+\begin{columns}
+  % First column with text and bullet points
+  \begin{column}{0.49\textwidth}
+    \centering
+    \begin{itemize}
+      \item Zero-shot classification with BART-MNLI
+      \item 13 candidate categories defined
+      \item Fallback keyword rules added for weak predictions
+      \item Per-category metrics calculated:
+        \begin{itemize}
+          \item Precision
+          \item Recall
+          \item F1-score
+        \end{itemize}
+
+      \item Final filtering based on confidence thresholds:
+        \begin{itemize}
+          \item description\_length $\geq$ 200 chars
+          \item avg\_score $\geq$ 0.2
+          \item max\_score $\geq$ 0.4
+        \end{itemize}
+  \end{itemize} 
+  \end{column}
+
+  \begin{column}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{refine_category_metrics_plot.png}
+  \end{column}
+\end{columns}
+
+\end{frame}

@@ -1,0 +1,48 @@
+\begin{frame}{Architecture Overview}
+\begin{columns}[T]
+  \begin{column}{0.40\textwidth}
+    Modular, fully local processing pipeline:
+    \begin{center}
+      \begin{itemize}
+        \item Data cleaning and augmentation
+        \item Category inference via zero-shot classification + fallback
+        \item Sentence embedding with MiniLM
+        \item Fast vector similarity search with FAISS
+        \item Offline UI built with Streamlit
+      \end{itemize}
+    \end{center}
+  \end{column}
+  
+  \begin{column}{0.55\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[node distance=1.5cm, scale=0.60, transform shape]
+        \node (desc) [block] {Input: Book Metadata};
+        \node (augment) [block, below of=desc] {Augment + Clean Description};
+        \node (classify) [block, below of=augment] {Category Inference (ZSC + Fallback)};
+        \node (filtering) [block, below of=classify] {Score-Based Filtering};
+
+        \node (embed) [block, below of=filtering] {MiniLM Embedding};
+        \node (index) [block, below of=embed] {FAISS Index};
+
+        \node (query) [block, right of=desc, xshift=4.5cm] {User Query};
+        \node (qembed) [block, below of=query] {MiniLM Embedding (Query)};
+        \node (search) [block, below of=qembed] {FAISS Similarity Search};
+        \node (refine) [block, below of=search] {Apply UI Filters (Tags, Rating)};
+        \node (output) [block, below of=refine] {Display Top-K Recommendations};
+
+        \draw [arrow] (desc) -- (augment);
+        \draw [arrow] (augment) -- (classify);
+        \draw [arrow] (classify) -- (filtering);
+        \draw [arrow] (filtering) -- (embed);
+        \draw [arrow] (embed) -- (index);
+
+        \draw [arrow] (query) -- (qembed);
+        \draw [arrow] (qembed) -- (search);
+        \draw [arrow] (index) -- (search);
+        \draw [arrow] (search) -- (refine);
+        \draw [arrow] (refine) -- (output);
+      \end{tikzpicture}
+    \end{center}
+  \end{column}
+\end{columns}
+\end{frame}

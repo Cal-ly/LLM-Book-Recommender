@@ -1,10 +1,8 @@
-
 \ProvidesPackage{beamerthemeTealOceanPdflatex}
 
 \mode<presentation>
 % Set aspect ratio to 16:9
 \usepackage{pgfpages}
-\geometry{paperwidth=16cm,paperheight=9cm}
 \setbeamersize{text margin left=0.5cm,text margin right=0.5cm}
 
 \usepackage{etoolbox}
@@ -27,9 +25,49 @@
 \setbeamercolor{example text}{fg=accent3}
 \setbeamercolor{titlelike}{fg=white,bg=accent3}
 
-% Frametitle bar
-\setbeamercolor{frametitle}{fg=white,bg=accent2}
-\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+% Set the default font family to Latin Modern
+\setbeamerfont{normal text}{family=\rmfamily}
+\setbeamerfont{frametitle}{family=\rmfamily}
+\setbeamerfont{title}{family=\rmfamily}
+\setbeamerfont{subtitle}{family=\rmfamily}
+\setbeamerfont{author}{family=\rmfamily}
+\setbeamerfont{institute}{family=\rmfamily}
+\setbeamerfont{date}{family=\rmfamily}
+
+% Set the default font size
+\setbeamerfont{text}{size=\small}
+\setbeamerfont{normal text}{size=\small}
+\setbeamerfont{frametitle}{size=\small}
+\setbeamerfont{title}{size=\large}
+\setbeamerfont{subtitle}{size=\footnotesize}
+\setbeamerfont{author}{size=\footnotesize}
+\setbeamerfont{institute}{size=\footnotesize}
+\setbeamerfont{date}{size=\footnotesize}
+\setbeamerfont{section in toc}{size=\footnotesize}
+\setbeamerfont{subsection in toc}{size=\footnotesize}
+\setbeamerfont{itemize/enumerate item}{size=\footnotesize}
+\setbeamerfont{itemize/enumerate subitem}{size=\footnotesize}
+\setbeamerfont{itemize/enumerate subsubitem}{size=\footnotesize}
+\setbeamerfont{itemize/enumerate subbody}{size=\footnotesize}
+\setbeamerfont{itemize/enumerate body}{size=\footnotesize}
+
+% Set the default font size for blocks
+\setbeamerfont{block title}{size=\small}
+\setbeamerfont{block body}{size=\footnotesize}
+
+% Set the default font size for footnotes
+\setbeamerfont{footnote}{size=\scriptsize}
+
+
+% Frametitle bar with logo (with left/right padding and vertically centered logo)
+\setbeamertemplate{frametitle}{
+  \vbox{}\vskip-3.1ex
+  \begin{beamercolorbox}[wd=\paperwidth,ht=3.5ex,dp=2ex,leftskip=0.5cm,rightskip=0.5cm]{frametitle}%
+    \usebeamerfont{frametitle}\insertframetitle%
+    \hfill
+    \raisebox{-1ex}{\includegraphics[height=4ex]{tm-logo-nobg.png}}%
+  \end{beamercolorbox}%
+}
 
 % Title page elements
 \setbeamercolor{title}{fg=white, bg=accent3}
@@ -50,6 +88,20 @@
 
 % Navigation symbols off
 \setbeamertemplate{navigation symbols}{}
+
+% Footer with slide number X/Y
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.98\paperwidth,ht=2.5ex,dp=1ex,leftskip=1em,rightskip=1em]{author in head/foot}%
+      \hfill
+      \insertframenumber{} / \inserttotalframenumber
+    \end{beamercolorbox}%
+  }%
+}
+
+% Add vertical space after footline
+\addtobeamertemplate{footline}{}{\vspace{0.2cm}}
 
 % Final title slide setup
 \setbeamertemplate{title page}
