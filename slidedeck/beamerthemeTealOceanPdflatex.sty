@@ -34,35 +34,39 @@
 \setbeamerfont{institute}{family=\rmfamily}
 \setbeamerfont{date}{family=\rmfamily}
 
-% Set the default font size
-\setbeamerfont{text}{size=\small}
-\setbeamerfont{normal text}{size=\small}
-\setbeamerfont{frametitle}{size=\small}
-\setbeamerfont{title}{size=\large}
+% Improved font sizes for better readability during presentation
+\setbeamerfont{text}{size=\footnotesize}
+\setbeamerfont{normal text}{size=\footnotesize}
+\setbeamerfont{frametitle}{size=\footnotesize, series=\bfseries}
+\setbeamerfont{title}{size=\footnotesize, series=\bfseries}
 \setbeamerfont{subtitle}{size=\footnotesize}
 \setbeamerfont{author}{size=\footnotesize}
 \setbeamerfont{institute}{size=\footnotesize}
 \setbeamerfont{date}{size=\footnotesize}
 \setbeamerfont{section in toc}{size=\footnotesize}
 \setbeamerfont{subsection in toc}{size=\footnotesize}
-\setbeamerfont{itemize/enumerate item}{size=\footnotesize}
-\setbeamerfont{itemize/enumerate subitem}{size=\footnotesize}
-\setbeamerfont{itemize/enumerate subsubitem}{size=\footnotesize}
-\setbeamerfont{itemize/enumerate subbody}{size=\footnotesize}
-\setbeamerfont{itemize/enumerate body}{size=\footnotesize}
+\setbeamerfont{itemize/enumerate item}{size=\scriptsize}
+\setbeamerfont{itemize/enumerate subitem}{size=\scriptsize}
+\setbeamerfont{itemize/enumerate subsubitem}{size=\scriptsize}
+\setbeamerfont{itemize/enumerate subbody}{size=\scriptsize}
+\setbeamerfont{itemize/enumerate body}{size=\scriptsize}
 
 % Set the default font size for blocks
-\setbeamerfont{block title}{size=\small}
+\setbeamerfont{block title}{size=\footnotesize, series=\bfseries}
 \setbeamerfont{block body}{size=\footnotesize}
 
 % Set the default font size for footnotes
-\setbeamerfont{footnote}{size=\scriptsize}
+\setbeamerfont{footnote}{size=\footnotesize}
 
+% Better itemize symbols and spacing
+\setbeamertemplate{itemize item}{\color{accent2}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{accent1}$\triangleright$}
+\setbeamertemplate{itemize subsubitem}{\color{accent1}$-$}
 
 % Frametitle bar with logo (with left/right padding and vertically centered logo)
 \setbeamertemplate{frametitle}{
   \vbox{}\vskip-3.1ex
-  \begin{beamercolorbox}[wd=\paperwidth,ht=3.5ex,dp=2ex,leftskip=0.5cm,rightskip=0.5cm]{frametitle}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=4ex,dp=2ex,leftskip=0.5cm,rightskip=0.5cm]{frametitle}%
     \usebeamerfont{frametitle}\insertframetitle%
     \hfill
     \raisebox{-1ex}{\includegraphics[height=4ex]{figures/tm-logo-nobg-quarter.png}}%
@@ -71,7 +75,7 @@
 
 % Title page elements
 \setbeamercolor{title}{fg=white, bg=accent3}
-\setbeamercolor{subtitle}{fg=base0}
+\setbeamercolor{subtitle}{fg=base1}
 \setbeamercolor{author}{fg=base1}
 \setbeamercolor{institute}{fg=base1}
 \setbeamercolor{date}{fg=base1}
@@ -95,6 +99,7 @@
   \hbox{%
     \begin{beamercolorbox}[wd=.98\paperwidth,ht=2.5ex,dp=1ex,leftskip=1em,rightskip=1em]{author in head/foot}%
       \hfill
+      \usebeamerfont{footline}\color{accent2}
       \insertframenumber{} / \inserttotalframenumber
     \end{beamercolorbox}%
   }%
@@ -109,7 +114,7 @@
   \vbox{}
   \vfill
   \begin{centering}
-    \begin{beamercolorbox}[sep=8pt,center]{title}
+    \begin{beamercolorbox}[sep=12pt,center]{title}
       \usebeamerfont{title}\inserttitle\par%
       \ifx\insertsubtitle\@empty%
       \else%
@@ -117,14 +122,14 @@
         {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
       \fi%
     \end{beamercolorbox}%
-    \vskip1em\par
-    \begin{beamercolorbox}[sep=4pt,center]{author}
+    \vskip1.5em\par
+    \begin{beamercolorbox}[sep=6pt,center]{author}
       \usebeamerfont{author}\insertauthor
     \end{beamercolorbox}
-    \begin{beamercolorbox}[sep=2pt,center]{institute}
+    \begin{beamercolorbox}[sep=4pt,center]{institute}
       \usebeamerfont{institute}\insertinstitute
     \end{beamercolorbox}
-    \begin{beamercolorbox}[sep=2pt,center]{date}
+    \begin{beamercolorbox}[sep=4pt,center]{date}
       \usebeamerfont{date}\insertdate
     \end{beamercolorbox}
   \end{centering}

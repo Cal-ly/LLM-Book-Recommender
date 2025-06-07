@@ -1,46 +1,47 @@
 \begin{frame}{Architecture Overview}
 \begin{columns}[T]
-  \begin{column}{0.40\textwidth}
-    Modular, fully local processing pipeline:
-    \begin{center}
-      \begin{itemize}
-        \item Data cleaning and augmentation
-        \item Category inference via zero-shot classification + fallback
-        \item Sentence embedding with MiniLM
-        \item Fast vector similarity search with FAISS
-        \item Offline UI built with Streamlit
-      \end{itemize}
-    \end{center}
+  \begin{column}{0.50\textwidth}
+    \textbf{Core Components:}
+    \begin{itemize}
+      \item \highlight{Data Pipeline:} Clean \& augment book metadata
+      \item \highlight{Category Inference:} Zero-shot classification + fallback rules
+      \item \highlight{Semantic Embedding:} \tech{MiniLM} sentence transformers
+      \item \highlight{Vector Search:} \tech{FAISS} similarity matching
+      \item \highlight{Local UI:} \tech{Streamlit} interface
+    \end{itemize}
+    
+    \vspace{0.1cm}
+    \footnotesize \textbf{Key Innovation:} Fully local semantic search without cloud dependencies
   \end{column}
   
-  \begin{column}{0.55\textwidth}
+  \begin{column}{0.45\textwidth}
     \begin{center}
-      \begin{tikzpicture}[node distance=1.5cm, every node/.style={font=\small}, scale=0.60, transform shape]
-        \node (desc) [block] {Input: Book Metadata};
-        \node (augment) [block, below of=desc] {Augment + Clean Description};
-        \node (classify) [block, below of=augment] {Category Inference (ZSC + Fallback)};
-        \node (filtering) [block, below of=classify] {Score-Based Filtering};
-
-        \node (embed) [block, below of=filtering] {MiniLM Embedding};
+      \begin{tikzpicture}[node distance=1.5cm, every node/.style={font=\footnotesize}, scale=0.75, transform shape]
+        % Left pipeline (data processing)
+        \node (desc) [block] {Book Metadata};
+        \node (augment) [block, below of=desc] {Clean \& Augment};
+        \node (classify) [block, below of=augment] {Category Inference};
+        \node (embed) [block, below of=classify] {MiniLM Embedding};
         \node (index) [block, below of=embed] {FAISS Index};
 
-        \node (query) [block, right of=desc, xshift=4.5cm] {User Query};
-        \node (qembed) [block, below of=query] {MiniLM Embedding (Query)};
-        \node (search) [block, below of=qembed] {FAISS Similarity Search};
-        \node (refine) [block, below of=search] {Apply UI Filters (Tags, Rating)};
-        \node (output) [block, below of=refine] {Display Top-K Recommendations};
+        % Right pipeline (query processing)
+        \node (query) [block, right of=desc, xshift=4cm] {User Query};
+        \node (qembed) [block, below of=query] {Query Embedding};
+        \node (search) [block, below of=qembed] {Vector Search};
+        \node (filter) [block, below of=search] {Apply Filters};
+        \node (output) [block, below of=filter] {Top-K Results};
 
+        % Arrows
         \draw [arrow] (desc) -- (augment);
         \draw [arrow] (augment) -- (classify);
-        \draw [arrow] (classify) -- (filtering);
-        \draw [arrow] (filtering) -- (embed);
+        \draw [arrow] (classify) -- (embed);
         \draw [arrow] (embed) -- (index);
 
         \draw [arrow] (query) -- (qembed);
         \draw [arrow] (qembed) -- (search);
         \draw [arrow] (index) -- (search);
-        \draw [arrow] (search) -- (refine);
-        \draw [arrow] (refine) -- (output);
+        \draw [arrow] (search) -- (filter);
+        \draw [arrow] (filter) -- (output);
       \end{tikzpicture}
     \end{center}
   \end{column}

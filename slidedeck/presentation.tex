@@ -6,6 +6,15 @@
 \tikzstyle{block} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=blue!10]
 \tikzstyle{arrow} = [thick, ->, >=Stealth]
 
+% Additional packages for better presentation
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Custom commands for consistency
+\newcommand{\highlight}[1]{\textbf{\color{accent2}#1}}
+\newcommand{\tech}[1]{\texttt{#1}}
+
 \title{Book Recommender using NLP}
 \author{Carsten Lydeking}
 \institute{Zealand Business College}
@@ -15,25 +24,27 @@
 
 \begin{document}
 
+% Title slide
 \begin{frame}
   \titlepage
 \end{frame}
 
+% Main presentation slides (9 slides for ~7-8 minutes, leaving 2-3 min for conclusion)
 \input{slides/01_motivation_problem}
 \input{slides/02_architecture}
 \input{slides/03_dataset_exploration}
 \input{slides/04_category_inference}
-\input{slides/05_sentence_embedding}
-\input{slides/06_faiss_similarity_search}
-\input{slides/07_ui_privacy}
-\input{slides/08_reflections}
-\input{slides/09_conclusion}
+\input{slides/05_embedding_search}  % Combined embedding + FAISS
+\input{slides/06_ui_demo}
+\input{slides/07_reflections}
+\input{slides/08_conclusion}
+\input{slides/breaker}
 
-% Optional backup slides:
+% Backup slides for Q&A - clearly separated
+
 \input{slides/10_backup_metrics}
 \input{slides/11_backup_fallback_keywords}
 \input{slides/12_backup_performance}
-
-
+\input{slides/13_backup_examples}  % New slide with concrete examples
 
 \end{document}

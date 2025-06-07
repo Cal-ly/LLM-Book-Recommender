@@ -1,0 +1,54 @@
+\begin{frame}{Conclusion}
+
+\begin{columns}[T]
+  \begin{column}{0.45\textwidth}
+    \textbf{Research Question Answered:}
+    \begin{center}
+    \begin{beamercolorbox}[sep=1pt,center,rounded=true]{block title}
+    \scriptsize \textit{How can a local ML model recommend books based on natural language descriptions?}
+    \end{beamercolorbox}
+    \end{center}
+
+    \textbf{Solution Implemented:}
+    \begin{itemize}
+      \item \highlight{Semantic embeddings} with MiniLM transformers
+      \item \highlight{Vector similarity search} using FAISS
+      \item \highlight{Zero-shot classification} for categorization
+      \item \highlight{Privacy-first design} - fully local processing
+      \item \highlight{Key Contributions:} \textit{Proof-of-concept that modern NLP enables practical, privacy-preserving recommendation systems}
+    \end{itemize}
+  \end{column}
+
+  \begin{column}{0.50\textwidth}
+    \centering
+    \textbf{System Architecture:}
+    \begin{tikzpicture}[node distance=1.2cm, scale=0.9, every node/.style={font=\scriptsize}, scale=0.7, transform shape]
+    % Simplified final architecture
+    \node (data) [block, fill=blue!20] {Book Data};
+    \node (process) [block, below of=data, fill=orange!20] {NLP Processing};
+    \node (embed) [block, below of=process, fill=green!20] {Semantic Embedding};
+    \node (index) [block, below of=embed, fill=yellow!20] {Vector Index};
+    
+    \node (query) [block, right of=data, xshift=3cm, fill=blue!20] {User Query};
+    \node (search) [block, below of=query, fill=purple!20] {Semantic Search};
+    \node (results) [block, below of=search, fill=red!20] {Recommendations};
+
+    \draw [arrow] (data) -- (process);
+    \draw [arrow] (process) -- (embed);
+    \draw [arrow] (embed) -- (index);
+    \draw [arrow] (query) -- (search);
+    \draw [arrow] (index) -- (search);
+    \draw [arrow] (search) -- (results);
+    \end{tikzpicture}
+
+    \vspace{0.4cm}
+    \textbf{Impact \& Applications:}
+    \begin{itemize}
+      \item Educational tool for privacy-aware ML
+      \item Foundation for local-first recommendation systems
+      \item Demonstrates transformer accessibility on consumer hardware
+    \end{itemize}
+  \end{column}
+\end{columns}
+
+\end{frame}
