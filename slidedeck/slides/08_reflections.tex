@@ -1,0 +1,37 @@
+\begin{frame}{Reflections and Limitations}
+
+\begin{columns}[T]
+  \begin{column}{0.40\textwidth}
+    \begin{itemize}
+        \item \textbf{Strengths:}
+          \begin{itemize}
+            \item Fully local, privacy-preserving recommendation system
+            \item Lightweight architecture
+            \item Semantic search works well even for abstract queries
+          \end{itemize}
+        \item \textbf{Limitations:}
+          \begin{itemize}
+            \item No personalization (no user profile or history)
+            \item Dependent on description quality
+            \item Dataset relatively small ($\sim$ 5160 books)
+            \item No learning from user feedback
+          \end{itemize}
+        \item \textbf{Possible improvements:}
+          \begin{itemize}
+            \item Larger, more diverse dataset
+            \item Explore better embedding models (MPNet, SBERT)
+            \item Implement re-ranking layer
+            \item Add lightweight offline personalization
+          \end{itemize}
+    \end{itemize}
+  \end{column}
+
+  \begin{column}{0.55\textwidth}
+    \centering
+    % Include an illustration or leave blank?
+    \vspace{2cm}
+    {\Large\textit{"Even compact transformer models provide robust performance on consumer hardware."}}
+  \end{column}
+\end{columns}
+
+\end{frame}

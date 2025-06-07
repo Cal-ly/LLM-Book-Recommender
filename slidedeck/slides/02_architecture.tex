@@ -15,7 +15,7 @@
   
   \begin{column}{0.55\textwidth}
     \begin{center}
-      \begin{tikzpicture}[node distance=1.5cm, scale=0.60, transform shape]
+      \begin{tikzpicture}[node distance=1.5cm, every node/.style={font=\small}, scale=0.60, transform shape]
         \node (desc) [block] {Input: Book Metadata};
         \node (augment) [block, below of=desc] {Augment + Clean Description};
         \node (classify) [block, below of=augment] {Category Inference (ZSC + Fallback)};
