@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1749333423.34837 "/home/cally/Code/GitHub/LLM-Book-Recommender/slidedeck/presentation.tex" "presentation.pdf" "presentation" 1749333424.96435 0
+["pdflatex"] 1749333543.1962 "/home/cally/Code/GitHub/LLM-Book-Recommender/slidedeck/presentation.tex" "presentation.pdf" "presentation" 1749333544.81011 0
   "../synopsis/figures/reexp_mismatch_counts.png" 1748609928.00009 31895 1bae1f219c7e0ad35c2804247ce46162 ""
   "../synopsis/figures/refine_category_metrics_plot.png" 1748609928.00009 61064 9fc034da226e4d641863cada5c514c0a ""
   "/home/cally/Code/GitHub/LLM-Book-Recommender/slidedeck/presentation.tex" 1749330333.924 1521 dd3474eebe0b1364555878ea1154e65d ""
@@ -246,9 +246,9 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1748602156 2703949 17e7f26ccb2e760cd648c08bcd7d4297 ""
   "beamerthemeTealOceanPdflatex.sty" 1749332052.82943 4782 1ffb0b0df07afd773af96a933b677049 ""
   "figures/tm-logo-nobg-quarter.png" 1749325786.99904 120474 5e8a04ec5b8010c5cfe65058b29d41b2 ""
-  "presentation.aux" 1749333424.84703 2238 7911b1fc8942b3235b7bf7b39729ade3 "pdflatex"
-  "presentation.nav" 1749333424.84901 1481 4dff29d63ced408af8d13a7957e2a731 "pdflatex"
-  "presentation.out" 1749333424.02708 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "presentation.aux" 1749333544.68238 2238 7911b1fc8942b3235b7bf7b39729ade3 "pdflatex"
+  "presentation.nav" 1749333544.68238 1481 4dff29d63ced408af8d13a7957e2a731 "pdflatex"
+  "presentation.out" 1749333543.86738 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "presentation.tex" 1749330333.924 1521 dd3474eebe0b1364555878ea1154e65d ""
   "slides/01_motivation_problem.tex" 1749331800.80529 732 b8f1f19152bfa4f8233fc25c3207f775 ""
   "slides/02_architecture.tex" 1749333294.15142 2064 a8103abf85d88813fb7bd9eaedc466d7 ""
@@ -256,7 +256,7 @@
   "slides/04_category_inference.tex" 1749333367.10786 1176 4280477892cbbb46128cb5391e5db6f7 ""
   "slides/05_embedding_search.tex" 1749333423.14101 2159 a25f15467d6c29d0cd7fff9fa3750261 ""
   "slides/06_ui_demo.tex" 1749328500.11644 1613 5bd1af625da66af838616dc888104da8 ""
-  "slides/07_reflections.tex" 1749331800.72208 1661 843807ced950893ce401d770cc124a31 ""
+  "slides/07_reflections.tex" 1749333542.98546 1661 650b71be4737730b2daac50f3a63c538 ""
   "slides/08_conclusion.tex" 1749331817.40094 2204 2e480377775ab100a7f3dbaa5104542e ""
   "slides/10_backup_metrics.tex" 1749322114.79219 160 39dcb584499ac334ca538a35cc9a1b13 ""
   "slides/11_backup_fallback_keywords.tex" 1749322080.8101 475 93472daf07a06b0930ed6f678bfcbe74 ""
