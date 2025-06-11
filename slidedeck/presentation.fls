@@ -383,8 +383,8 @@ INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr12.
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmss9.tfm
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr9.tfm
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmss8.tfm
-INPUT C:\Users\Cal-l\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
-INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmss10.tfm
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmss8.tfm
 INPUT .\slides\01_motivation_problem.tex
 INPUT .\slides\01_motivation_problem.tex
 INPUT .\slides\01_motivation_problem.tex
@@ -422,7 +422,6 @@ INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\sym
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmsso9.tfm
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmsso8.tfm
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmsso8.tfm
-INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmss10.tfm
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr10.tfm
 INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
@@ -431,6 +430,13 @@ INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
+INPUT C:\Users\Cal-l\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmssbx10.tfm
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmss.fd
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmss.fd
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmss.fd
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ts1-lmss9.tfm
 INPUT .\slides\02_architecture.tex
 INPUT .\slides\02_architecture.tex
 INPUT .\slides\02_architecture.tex
@@ -440,12 +446,12 @@ INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-ts1.enc
 INPUT .\slides\03_dataset_exploration.tex
 INPUT .\slides\03_dataset_exploration.tex
 INPUT .\slides\03_dataset_exploration.tex
 INPUT .\slides\03_dataset_exploration.tex
 INPUT slides\03_dataset_exploration.tex
-INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmss8.tfm
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmmi10.tfm
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmmi8.tfm
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmsy10.tfm
@@ -466,8 +472,6 @@ INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
-INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathsy.enc
-INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT .\slides\04_category_inference.tex
 INPUT .\slides\04_category_inference.tex
 INPUT .\slides\04_category_inference.tex
@@ -483,6 +487,8 @@ INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathsy.enc
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT .\slides\05_sentence_embedding.tex
 INPUT .\slides\05_sentence_embedding.tex
 INPUT .\slides\05_sentence_embedding.tex
