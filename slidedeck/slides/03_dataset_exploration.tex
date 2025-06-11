@@ -1,22 +1,33 @@
-\begin{frame}{Dataset Exploration}
+\begin{frame}{Dataset Exploration \& Processing}
   
 \begin{columns}[T]
-  \centering
-  \begin{column}{0.49\textwidth}
-    Original dataset $\sim$ 6800 books
+  \begin{column}{0.55\textwidth}
+    \textbf{Data Quality Challenges:}
     \begin{itemize}
-          \item Missing or inconsistent fields (authors, categories, descriptions)
-          \item Very short or low-quality descriptions
-          \item Category noise across sources
-          \item OpenLibrary and Google Books API used to enrich metadata
-          \item Rows with $<9$ words in description removed
-          \item Final dataset: 5160 high-confidence books
+      \item Started with \highlight{6,800 books} from multiple sources
+      \item \textbf{Issues found:}
+        \begin{itemize}
+          \item Missing author/category information
+          \item Very short descriptions ($<$ 9 words)
+          \item Inconsistent categorization across sources
         \end{itemize}
+    \end{itemize}
+    
+    \vspace{0.3cm}
+    \textbf{Data Engineering Solutions:}
+    \begin{itemize}
+      \item \highlight{API enrichment:} OpenLibrary \& Google Books
+      \item \highlight{Quality filtering:} Remove inadequate descriptions
+      \item \highlight{Final dataset:} 5,160 high-quality books
+    \end{itemize}
   \end{column}
 
-  \begin{column}{0.49\textwidth}
-  \centering
-      \includegraphics[width=\textwidth]{reexp_mismatch_counts.png}
+  \begin{column}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{reexp_mismatch_counts.png}
+    
+    \vspace{0.2cm}
+    \scriptsize \textit{Data inconsistencies across sources required systematic cleaning and validation}
   \end{column}
 \end{columns}
 \end{frame}

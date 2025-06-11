@@ -1,12 +1,21 @@
 \begin{frame}{Motivation and Problem}
 \begin{itemize}
-  \item Increasing demand for privacy-preserving, local-first ML applications.
-  \item Typical recommender systems rely on cloud APIs and user profiles.
-  \item Goal: explore feasibility of a fully offline, content-based book recommender system.
-  \item Research question:
-    \begin{quote}
-    How can a local ML model be used to recommend books based on natural language descriptions?
-    \end{quote}
+  \item \highlight{Growing privacy and cost concerns} with cloud-based systems
+  \item Traditional systems require \highlight{user profiles and data collection}
+  \item \highlight{Goal:} Build a fully offline, content-based book recommender
+  \vspace{0.1cm}
+  \item \textbf{Research Question:}
+\end{itemize}
+
+\begin{center}
+\begin{beamercolorbox}[sep=5pt,center,rounded=true]{block title}
+\footnotesize \textit{How can a local ML model recommend books based on natural language descriptions?}
+\end{beamercolorbox}
+\end{center}
+
+\vspace{0.2cm}
+\begin{itemize}
+  \item \textbf{Key Requirements:} No external APIs, no user tracking, semantic understanding
 \end{itemize}
 \end{frame}
 

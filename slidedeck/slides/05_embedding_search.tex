@@ -1,0 +1,56 @@
+\begin{frame}{Semantic Embedding \& Vector Search}
+
+\begin{columns}[T]
+  \begin{column}{0.50\textwidth}
+    \textbf{Sentence Embedding with \tech{MiniLM}:}
+    \begin{itemize}
+      \item \highlight{Model:} \tech{all-MiniLM-L6-v2}
+      \item \highlight{Input format:} \\
+        {\scriptsize \textit{"Title: ... Author: ... Description: ..."}}
+      \item \highlight{Output:} 384-dimensional vectors
+      \item \highlight{Advantage:} Semantic similarity beyond keywords
+    \end{itemize}
+
+    \vspace{0.3cm}
+    \textbf{Vector Search with \tech{FAISS}:}
+    \begin{itemize}
+      \item \highlight{Index:} 5,160 book embeddings
+      \item \highlight{Search:} L2 distance (exact search)
+      \item \highlight{Performance:} $<$ 10ms query time
+      \item \highlight{Local:} No external dependencies
+    \end{itemize}
+  \end{column}
+
+  \begin{column}{0.45\textwidth}
+    \centering
+    \begin{tikzpicture}[node distance=1.0cm, every node/.style={font=\small}]
+        % Embedding process
+        \node (input) [draw, rounded corners, minimum width=5.5cm, minimum height=0.8cm, fill=blue!10] 
+        {\small Query: "space exploration novels"};
+
+        \node (embed) [below of=input, draw, rounded corners, minimum width=5.5cm, minimum height=0.8cm, fill=orange!15] 
+        {\small MiniLM Transformer};
+
+        \node (vector) [below of=embed, draw, rounded corners, minimum width=5.5cm, minimum height=0.8cm, fill=green!15] 
+        {\small Vector: $\vec{v} \in \mathbb{R}^{384}$};
+
+        % Search process
+        \node (faiss) [below of=vector, draw, rounded corners, minimum width=5.5cm, minimum height=0.8cm, fill=yellow!15] 
+        {\small FAISS L2 Distance Search};
+
+        \node (results) [below of=faiss, draw, rounded corners, minimum width=5.5cm, minimum height=0.8cm, fill=gray!15] 
+        {\small Top-K Similar Books};
+
+        % Arrows
+        \draw[->] (input) -- (embed);
+        \draw[->] (embed) -- (vector);
+        \draw[->] (vector) -- (faiss);
+        \draw[->] (faiss) -- (results);
+    \end{tikzpicture}
+    
+    \vspace{0.2cm}
+    \small \textit{End-to-end semantic search in $<$ 200ms}
+  \end{column}
+\end{columns}
+
+\end{frame}
