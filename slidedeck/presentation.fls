@@ -315,6 +315,8 @@ INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\latex\lm\lmodern.sty
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\latex\lm\lmodern.sty
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\latex\notes\notes.sty
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\latex\notes\notes.sty
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryangles.code.tex
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryangles.code.tex
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryquotes.code.tex
@@ -387,6 +389,11 @@ INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr9.t
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmss8.tfm
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmss10.tfm
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmss8.tfm
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmssbx10.tfm
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmss.fd
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmss.fd
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmss.fd
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ts1-lmss8.tfm
 INPUT .\slides\01_motivation_problem.tex
 INPUT .\slides\01_motivation_problem.tex
 INPUT .\slides\01_motivation_problem.tex
@@ -435,11 +442,7 @@ INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT C:\Users\Cal-l\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
-INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmssbx10.tfm
-INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmss.fd
-INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmss.fd
-INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmss.fd
-INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ts1-lmss8.tfm
+INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-ts1.enc
 INPUT .\slides\02_architecture.tex
 INPUT .\slides\02_architecture.tex
 INPUT .\slides\02_architecture.tex
@@ -454,7 +457,6 @@ INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
 INPUT .\figures\tm-logo-nobg-quarter.png
-INPUT C:\Users\Cal-l\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-ts1.enc
 INPUT .\slides\03_dataset_exploration.tex
 INPUT .\slides\03_dataset_exploration.tex
 INPUT .\slides\03_dataset_exploration.tex

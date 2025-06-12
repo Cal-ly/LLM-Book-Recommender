@@ -1,9 +1,9 @@
 \documentclass[aspectratio=169]{beamer}
 \usepackage{beamerthemeTealOceanPdflatex} % Custom theme with oceanic colors
 
-% Enable notes on second screen
-\usepackage{pgfpages}
-\setbeameroption{show notes on second screen}
+% Enable notes on second screen (CHANGE THIS LINE)
+\usepackage{notes}
+\setbeameroption{show notes on second screen=right}
 
 \usepackage{tikz}
 \usetikzlibrary{angles, quotes, shapes.geometric, arrows.meta, positioning}
@@ -31,24 +31,32 @@
 % Title slide
 \begin{frame}
   \titlepage
+  \note{
+    \textbf{OPENING (30 seconds):}
+    \begin{itemize}
+      \item Good morning, I'm Carsten
+      \item Book recommender using NLP for oral exam
+      \item 10 min presentation + questions
+      \item Focus on concepts and implementation
+    \end{itemize}
+  }
 \end{frame}
 
-% Main presentation slides (9 slides for ~7-8 minutes, leaving 2-3 min for conclusion)
+% Main presentation slides
 \input{slides/01_motivation_problem}
 \input{slides/02_architecture}
 \input{slides/03_dataset_exploration}
 \input{slides/04_category_inference}
-\input{slides/05_embedding_search}  % Combined embedding + FAISS
+\input{slides/05_embedding_search}
 \input{slides/06_ui_demo}
 \input{slides/07_reflections}
 \input{slides/08_conclusion}
 \input{slides/breaker}
 
-% Backup slides for Q&A - clearly separated
-
+% Backup slides for Q&A
 \input{slides/10_backup_metrics}
 \input{slides/11_backup_fallback_keywords}
 \input{slides/12_backup_performance}
-\input{slides/13_backup_examples}  % New slide with concrete examples
+\input{slides/13_backup_examples}
 
 \end{document}
