@@ -18,6 +18,14 @@
       \item \highlight{Cold start problem} for new books
       \item \highlight{No feedback learning} - static recommendations
     \end{itemize}
+
+    \vspace{0.3cm}
+    \textbf{Edge AI:}
+      \begin{itemize}
+        \item Edge AI is popular term for local-first ML
+        \item Growing trend in mobile, home, IoT, privacy applications
+        \item The project fits this paradigm perfectly
+      \end{itemize}
   \end{column}
 
   \begin{column}{0.45\textwidth}
@@ -36,5 +44,51 @@
     \end{center}
   \end{column}
 \end{columns}
+
+\note{
+  \begin{columns}[T]
+    \begin{column}{0.49\textwidth}
+      [TIMING: 1 minute - HONEST SELF-ASSESSMENT:]
+      \begin{itemize}
+        \item "This is proof-of-concept, not production system"
+        \item "Goal was to demonstrate feasibility, not perfection - Garbage In, Garbage Out"
+      \end{itemize}
+      
+      \vspace{0.1cm}
+      [LIMITATIONS:]
+      \begin{itemize}
+        \item "No personalization - everyone gets same results for same query"
+        \item "Dataset small compared to Amazon's millions of books"
+        \item "New books need manual addition and embedding - batch trained"
+      \end{itemize}
+      
+      \vspace{0.1cm}
+      [FUTURE DIRECTIONS:]
+      \begin{itemize}
+        \item "Hybrid: Add collaborative filtering while preserving privacy and independence"
+        \item "Better embeddings: Fine-tune MiniLM on book-specific corpus"
+        \item "Local personalization: Session-based learning without tracking"
+        \item "Multi-modal: Computer vision on book covers for genre signals"
+      \end{itemize}
+    \end{column}
+    
+    \begin{column}{0.49\textwidth}
+
+      [POTENTIAL QUESTIONS:]
+      \begin{itemize}
+        \item \textit{"How would you add personalization?"} → "Local preference vectors, federated learning, session-based adaptation"
+        \item \textit{"Could this work for other domains?"} → "Yes - movies, music, research papers, any content with descriptions"
+        \item \textit{"What's the biggest technical limitation?"} → "Embedding quality for domain-specific queries"
+        \item \textit{"How evaluate recommendation quality?"} → "User studies, semantic similarity benchmarks, domain expert evaluation"
+      \end{itemize}
+      
+      \vspace{0.2cm}
+      [TRANSITION:]
+      \begin{itemize}
+        \item "Let me conclude by answering the original research question..."
+      \end{itemize}
+    \end{column}
+  \end{columns}
+}
 
 \end{frame}

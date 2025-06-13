@@ -18,23 +18,41 @@
   \item \textbf{Key Requirements:} No external APIs, no user tracking, semantic understanding
 \end{itemize}
 
-% \note{
-%   \textbf{Key Points (45 seconds):}
-%   \begin{itemize}
-%     \item Start with privacy motivation - very current topic
-%     \item Emphasize "fully offline" - no cloud APIs
-%     \item Research question is central - pause after reading it
-%     \item If asked about motivation: mention GDPR, data breaches, user control
-%   \end{itemize}
-  
-%   \textbf{Potential Questions:}
-%   \begin{itemize}
-%     \item "Why privacy focus?" → GDPR compliance, user trust, data breaches
-%     \item "What's wrong with cloud?" → Data collection, profiling, vendor lock-in
-%   \end{itemize}
-% }
-
-\note[item]{Welcome to the talk!}
-\note[item]{As you can see, this slidedeck is a work in progress.}
-
+\note{
+  \begin{columns}[T]
+    \begin{column}{0.49\textwidth}
+      [TIMING: 45 seconds - KEY TALKING POINTS:]
+      \begin{itemize}
+        \item "Privacy and independence concerns are growing - GDPR, data breaches, user awareness"
+        \item "Traditional recommenders like Amazon collect massive user data"
+        \item "My goal: prove you can do semantic recommendations locally"
+        \item PAUSE after research question - let it sink in
+        \item "Three key requirements guide everything I built"
+      \end{itemize}
+      
+      \vspace{0.2cm}
+      [DEFINE THESE TERMS:]
+      \begin{itemize}
+        \item Content-based: Recommends based on item features, not user behavior
+        \item Semantic understanding: Goes beyond keywords to understand meaning
+        \item Local/Offline: Runs entirely on user's device, no internet needed
+      \end{itemize}
+    \end{column}
+    
+    \begin{column}{0.49\textwidth}
+      [POTENTIAL QUESTIONS:]
+      \begin{itemize}
+        \item \textit{"Why privacy and independence focus?"} → GDPR compliance, user control, vendor independence, cost control
+        \item \textit{"What's wrong with cloud APIs?"} → Vendor lock-in, data collection, cost, dependency on enterprise software
+        \item \textit{"Content vs collaborative filtering?"} → Content uses item features, collaborative uses user behavior patterns
+      \end{itemize}
+      
+      \vspace{0.2cm}
+      [TRANSITION:]
+      \begin{itemize}
+        \item "Let me show you the architecture I designed to achieve this..."
+      \end{itemize}
+    \end{column}
+  \end{columns}
+}
 \end{frame}

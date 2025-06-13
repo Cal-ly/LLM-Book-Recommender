@@ -1,9 +1,6 @@
 \documentclass[aspectratio=169]{beamer}
 \usepackage{beamerthemeTealOceanPdflatex} % Custom theme with oceanic colors
 
-% Enable notes on second screen (CHANGE THIS LINE)
-\setbeameroption{show notes on second screen}
-
 \usepackage{tikz}
 \usetikzlibrary{angles, quotes, shapes.geometric, arrows.meta, positioning}
 \tikzstyle{block} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=blue!10]
@@ -20,24 +17,51 @@
 
 \title{Book Recommender using NLP}
 \author{Carsten Lydeking}
-\institute{Zealand Business College}
-\date{Oral Exam -- AI and ML, 4th Semester}
+\institute{Zealand Academy of Technologies and Business}
+\date{AI and ML, 4th Semester}
 
 \graphicspath{{../synopsis/figures/}}
 
-\begin{document}
+\usepackage{pgfpages}
+\setbeameroption{show notes on second screen=right}
 
+% Set global note page colors and fonts FIRST
+\definecolor{aurometalsaurus}{rgb}{0.43, 0.5, 0.5}
+\definecolor{arsenic}{rgb}{0.23, 0.27, 0.29}
+\setbeamercolor{note page}{fg=lime, bg=aurometalsaurus}
+\setbeamerfont{note page}{size=\tiny}
+
+% Custom note page template - removes header, maximizes space for notes
+\setbeamertemplate{note page}{
+  \pagecolor{arsenic}
+  \vskip2mm
+  \begin{minipage}[t][\textheight][t]{\textwidth}
+	\insertnote
+  \end{minipage}
+}
+
+\begin{document}
+  
 % Title slide
 \begin{frame}
   \titlepage
   \note{
-    \textbf{OPENING (30 seconds):}
+    [OPENING (30 seconds):]
     \begin{itemize}
-      \item Good morning, I'm Carsten
-      \item Book recommender using NLP for oral exam
-      \item 10 min presentation + questions
-      \item Focus on concepts and implementation
+      \item "Good morning, I'm Carsten Lydeking"
+      \item "Today I'll present my book recommender system using NLP"
+      \item "This is for my AI and ML oral exam, 4th semester"
+      \item "I'll speak for about 8-9 minutes, then happy to take questions"
     \end{itemize}
+    
+    [BODY LANGUAGE:]
+    \begin{itemize}
+      \item Stand confidently, make eye contact with all examiners
+      \item Hands visible, relaxed posture
+      \item Speak clearly and at moderate pace
+    \end{itemize}
+  
+    [TRANSITION:] "Let me start by explaining what motivated this project..."
   }
 \end{frame}
 

@@ -1,49 +1,96 @@
 \begin{frame}{Architecture Overview}
 \begin{columns}[T]
   \begin{column}{0.50\textwidth}
-    \textbf{Core Components:}
-    \begin{itemize}
-      \item \highlight{Data Pipeline:} Clean \& augment book metadata
-      \item \highlight{Category Inference:} Zero-shot classification + fallback rules
-      \item \highlight{Semantic Embedding:} \tech{MiniLM} sentence transformers
-      \item \highlight{Vector Search:} \tech{FAISS} similarity matching
-      \item \highlight{Local UI:} \tech{Streamlit} interface
-    \end{itemize}
-    
-    \vspace{0.1cm}
-    \footnotesize \textbf{Key Innovation:} Fully local semantic search without cloud dependencies
+	\textbf{Core Components:}
+	\begin{itemize}
+	  \item \highlight{Data Pipeline:} Clean \& augment book metadata
+	  \item \highlight{Category Inference:} Zero-shot classification + fallback rules
+	  \item \highlight{Semantic Embedding:} \tech{MiniLM} sentence transformers
+	  \item \highlight{Vector Search:} \tech{FAISS} similarity matching
+	  \item \highlight{Local UI:} \tech{Streamlit} interface
+	\end{itemize}
+	
+	\vspace{0.1cm}
+	\footnotesize \textbf{Key Innovation:} Fully local semantic search without cloud dependencies
   \end{column}
   
   \begin{column}{0.45\textwidth}
-    \begin{center}
-      \begin{tikzpicture}[node distance=1.5cm, every node/.style={font=\footnotesize}, scale=0.75, transform shape]
-        % Left pipeline (data processing)
-        \node (desc) [block] {Book Metadata};
-        \node (augment) [block, below of=desc] {Clean \& Augment};
-        \node (classify) [block, below of=augment] {Category Inference};
-        \node (embed) [block, below of=classify] {MiniLM Embedding};
-        \node (index) [block, below of=embed] {FAISS Index};
+	\begin{center}
+	  \begin{tikzpicture}[node distance=1.5cm, every node/.style={font=\footnotesize}, scale=0.75, transform shape]
+		% Left pipeline (data processing)
+		\node (desc) [block] {Book Metadata};
+		\node (augment) [block, below of=desc] {Clean \& Augment};
+		\node (classify) [block, below of=augment] {Category Inference};
+		\node (embed) [block, below of=classify] {MiniLM Embedding};
+		\node (index) [block, below of=embed] {FAISS Index};
 
-        % Right pipeline (query processing)
-        \node (query) [block, right of=desc, xshift=4cm] {User Query};
-        \node (qembed) [block, below of=query] {Query Embedding};
-        \node (search) [block, below of=qembed] {Vector Search};
-        \node (filter) [block, below of=search] {Apply Filters};
-        \node (output) [block, below of=filter] {Top-K Results};
+		% Right pipeline (query processing)
+		\node (query) [block, right of=desc, xshift=4cm] {User Query};
+		\node (qembed) [block, below of=query] {Query Embedding};
+		\node (search) [block, below of=qembed] {Vector Search};
+		\node (filter) [block, below of=search] {Apply Filters};
+		\node (output) [block, below of=filter] {Top-K Results};
 
-        % Arrows
-        \draw [arrow] (desc) -- (augment);
-        \draw [arrow] (augment) -- (classify);
-        \draw [arrow] (classify) -- (embed);
-        \draw [arrow] (embed) -- (index);
+		% Arrows
+		\draw [arrow] (desc) -- (augment);
+		\draw [arrow] (augment) -- (classify);
+		\draw [arrow] (classify) -- (embed);
+		\draw [arrow] (embed) -- (index);
 
-        \draw [arrow] (query) -- (qembed);
-        \draw [arrow] (qembed) -- (search);
-        \draw [arrow] (index) -- (search);
-        \draw [arrow] (search) -- (filter);
-        \draw [arrow] (filter) -- (output);
-      \end{tikzpicture}
-    \end{center}
+		\draw [arrow] (query) -- (qembed);
+		\draw [arrow] (qembed) -- (search);
+		\draw [arrow] (index) -- (search);
+		\draw [arrow] (search) -- (filter);
+		\draw [arrow] (filter) -- (output);
+	  \end{tikzpicture}
+	\end{center}
   \end{column}
 \end{columns}
+
+\note{
+  \begin{columns}[T]
+	\begin{column}{0.49\textwidth}
+	  [TIMING: 1 minute - DIAGRAM WALKTHROUGH:]
+	  \begin{itemize}
+		\item "Left side processes book data offline" (point to diagram)
+		\item "Right side handles user queries in real-time"
+		\item "Data flows from top to bottom, then connects for search"
+		\item "Everything happens locally - no network calls"
+	  \end{itemize}
+	  
+	  \vspace{0.2cm}
+	  [DEFINE KEY TERMS:]
+	  \begin{itemize}
+		\item Zero-shot classification: "Model classifies without training examples - understands categories from descriptions alone"
+		\item MiniLM: "Lightweight transformer model - like GPT but smaller, designed for understanding meaning"
+		\item FAISS: "Facebook's library for fast similarity search - finds nearest neighbors in high-dimensional space"
+		\item Semantic embedding: "Converting text to numbers that represent meaning - similar concepts get similar numbers"
+	  \end{itemize}
+	\end{column}
+	  
+	\begin{column}{0.49\textwidth}
+		[KEY INNOVATION EMPHASIS:]
+		\begin{itemize}
+			\item "The innovation is making semantic search work locally and independently"
+			\item "Usually requires cloud APIs like OpenAI or Google"
+			\item "I prove you can do it on consumer hardware without dependencies"
+		\end{itemize}
+		
+	\vspace{0.2cm}
+	  [POTENTIAL QUESTIONS:]
+	  \begin{itemize}
+		\item \textit{"What's a transformer?"} → "Neural network architecture very good at understanding language context"
+		\item \textit{"Why modular design?"} → "Easy to swap components, test approaches, maintain independence"
+		\item \textit{"How does semantic differ from keyword search?"} → "Keywords match exact words, semantic understands concepts"
+	  \end{itemize}
+	  
+	  \vspace{0.2cm}
+	  [TRANSITION:]
+	  \begin{itemize}
+		\item "Let me dive into the data challenges I had to solve first..."
+	  \end{itemize}
+	\end{column}
+  \end{columns}
+}
+
 \end{frame}
